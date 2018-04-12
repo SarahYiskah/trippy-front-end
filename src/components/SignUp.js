@@ -10,7 +10,7 @@ export default class SignUp extends Component {
   render(){
     return(
       <div className="ui middle aligned four column centered grid">
-        <form className="ui form centered">
+        <form className="ui form centered" id="signlog">
           <div className="field">
             <label>Name</label>
             <input type="text" name="name" placeholder="Name" />
