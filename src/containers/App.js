@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import SignUp from '../components/SignUp'
 import LogIn from '../components/LogIn'
 import Plan from '../components/Plan'
+import Logout from '../components/Logout';
 import './App.css'
 
 class App extends Component {
@@ -12,8 +13,39 @@ class App extends Component {
     super()
 
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      auth: null
     }
+  }
+
+  logUserIn = () => {
+    this.setState({
+      loggedIn: true
+    })
+  }
+
+  componentDidMount(){
+    if (localStorage.user) {
+      this.setState({
+        auth: JSON.parse(localStorage.user)
+      }, ()=> {
+        console.log(this.state)
+      })
+    }
+  }
+
+  gotAuthToken = (user) => {
+    this.setState({
+      auth: user
+    })
+    localStorage.user = JSON.stringify(user)
+  }
+
+  logout = (history) => {
+    localStorage.user = ""
+    this.setState({
+      auth: null
+    }, () => history.push("/"))
   }
 
   render() {
@@ -22,9 +54,14 @@ class App extends Component {
         <Router>
           <div>
             <NavBar loggedIn={this.state.loggedIn}/>
-            <Route path="/signup" component={SignUp} />
-            <Route path="/login" component={LogIn} />
-            <Route path="/plan" component={Plan} />
+            <Switch>
+              <Route exact path="/signup" render={(renderProps) => <SignUp logUserIn={this.logUserIn} registeredCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
+              <Route exact path="/login" render={(renderProps) => <LogIn logUserIn={this.logUserIn} loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
+              <Route exact path="/plan" component={Plan} />
+              <Route path="/logout" render={ (renderProps) => {
+                return <Logout logout={ this.logout } history={ renderProps.history } />;
+              } } />
+            </Switch>
           </div>
         </Router>
       </div>

@@ -2,9 +2,6 @@ import React, {Component} from 'react'
 
 export default class Plan extends Component {
 
-  constructor(){
-    super()
-  }
 
   render(){
     return(
