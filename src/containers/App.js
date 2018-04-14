@@ -3,8 +3,12 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import SignUp from '../components/SignUp'
 import LogIn from '../components/LogIn'
-import Plan from '../components/Plan'
 import Logout from '../components/Logout';
+
+import Plan from './Plan'
+import Itinerary from './Itinerary'
+import Activity from './Activity'
+
 import './App.css'
 
 class App extends Component {
@@ -58,6 +62,8 @@ class App extends Component {
               <Route exact path="/signup" render={(renderProps) => <SignUp logUserIn={this.logUserIn} registeredCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/login" render={(renderProps) => <LogIn logUserIn={this.logUserIn} loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/plan" component={Plan} />
+              <Route exact path="/intinerary" component={Itinerary} />
+              <Route exact path="/activity" component={Activity} />
               <Route path="/logout" render={ (renderProps) => {
                 return <Logout logout={ this.logout } history={ renderProps.history } />;
               } } />

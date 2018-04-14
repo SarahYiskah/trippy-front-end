@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import Filter from './Filter'
-import CategoryItem from './CategoryItem'
+import Filter from '../components/Filter'
+import CategoryItem from '../components/CategoryItem'
+
 
 export default class Plan extends Component {
 
