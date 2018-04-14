@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 
 const NavBar = (props) => {
 
-
-
   return(
     <div>
-      {props.loggedIn ? null :
+      {props.loggedIn ?
+      <div className="ui menu">
+        <Link className="item" id="logo" to={ "/login" }>trippy.</Link>
+        <div className="right menu">
+          <Link className="item" to={ "/login" }>Log Out</Link>
+        </div>
+      </div>:
       <div className="ui menu">
         <Link className="item" id="logo" to={ "/login" }>trippy.</Link>
         <div className="right menu">

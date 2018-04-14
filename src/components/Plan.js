@@ -4,9 +4,6 @@ import CategoryItem from './CategoryItem'
 
 export default class Plan extends Component {
 
-  constructor(){
-    super()
-  }
 
   render(){
     return(

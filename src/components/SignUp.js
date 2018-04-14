@@ -1,31 +1,67 @@
 import React, {Component} from 'react'
 
-
 export default class SignUp extends Component {
 
-  constructor(){
-    super()
+  state = {
+    name: "",
+    password: "",
+    passwordConfirmation: "",
+    email: "",
+    errors: []
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    fetch("http://localhost:3000/api/v1/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json"
+      },
+      body: JSON.stringify({
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password
+      })
+    })
+      .then(res => res.json())
+      .then(json => {
+        if (json.errors) {
+          this.setState({
+            errors: json.errors
+          });
+        } else {
+          this.setState({ errors: [] })
+          this.props.history.push("/plan");
+        }
+      })
+  }
+
+  onChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   render(){
     return(
       <div className="ui middle aligned four column centered grid">
-        <form className="ui form centered" id="signlog">
+        <form onSubmit={this.handleSubmit} className="ui form centered" id="signlog">
           <div className="field">
-            <label>Name</label>
-            <input type="text" name="name" placeholder="Name" />
+            <label htmlFor="name">Name</label>
+            <input onChange={ this.onChange } id="name" type="text" name="name" placeholder="Name" value={this.state.name}/>
           </div>
           <div className="field">
-            <label>Email</label>
-            <input type="text" name="email" placeholder="Email" />
+            <label htmlFor="email">Email</label>
+            <input onChange={ this.onChange } id="email" type="text" name="email" placeholder="Email" value={this.state.email}/>
           </div>
           <div className="field">
-            <label>Password</label>
-            <input type="password" name="password" placeholder="Password" />
+            <label htmlFor="password">Password</label>
+            <input onChange={ this.onChange } id="password" type="password" name="password" placeholder="Password" value={this.state.password}/>
           </div>
           <div className="field">
-            <label>Password Confirmation</label>
-            <input type="password" name="password-confirmation" placeholder="Password Confirmation" />
+            <label htmlFor="password-confirmation">Password Confirmation</label>
+            <input onChange={ this.onChange } id="password-confirmation" type="password" name="passwordConfirmation" placeholder="Password Confirmation" value={this.state.passwordConfirmation}/>
           </div>
           <button className="ui button" type="submit">Submit</button>
         </form>
