@@ -4,7 +4,6 @@ import NavBar from '../components/NavBar'
 import SignUp from '../components/SignUp'
 import LogIn from '../components/LogIn'
 import Logout from '../components/Logout';
-
 import Plan from './Plan'
 import Itinerary from './Itinerary'
 import Activity from './Activity'
