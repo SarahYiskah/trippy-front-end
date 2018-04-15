@@ -3,13 +3,10 @@ import React, {Component} from 'react'
 
 export default class SignUp extends Component {
 
-  constructor(){
-    super()
-    this.state = {
-      email: '',
-      password: '',
-      errors: []
-    }
+  state = {
+    email: '',
+    password: '',
+    errors: []
   }
 
   handleChange = (event) => {
@@ -39,6 +36,7 @@ export default class SignUp extends Component {
           })
         } else {
           this.setState({ errors: [] })
+          this.props.logUserIn()
           this.props.history.push("/plan");
         }
       })
@@ -48,6 +46,7 @@ export default class SignUp extends Component {
     return(
       <div className="ui middle aligned four column centered grid">
         <form onSubmit={this.handleSubmit} className="ui form centered" id="signlog">
+        <ul>{this.state.errors.map((error) => <p style={{"color":"red"}}>{error}</p>)}</ul>
           <div className="field">
             <label>Email</label>
             <input onChange={this.handleChange} type="text" name="email" placeholder="Email" value={this.state.email}/>

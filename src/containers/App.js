@@ -48,6 +48,7 @@ class App extends Component {
   logout = (history) => {
     localStorage.user = ""
     this.setState({
+      loggedIn: false,
       auth: null
     }, () => history.push("/"))
   }
@@ -64,7 +65,7 @@ class App extends Component {
               <Route exact path="/plan" component={Plan} />
               <Route exact path="/intinerary" component={Itinerary} />
               <Route exact path="/activity" component={Activity} />
-              <Route path="/logout" render={ (renderProps) => {
+              <Route exact path="/logout" render={ (renderProps) => {
                 return <Logout logout={ this.logout } history={ renderProps.history } />;
               } } />
             </Switch>

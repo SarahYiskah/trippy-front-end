@@ -32,6 +32,7 @@ export default class SignUp extends Component {
           });
         } else {
           this.setState({ errors: [] })
+          this.props.logUserIn()
           this.props.history.push("/plan");
         }
       })
@@ -47,6 +48,7 @@ export default class SignUp extends Component {
     return(
       <div className="ui middle aligned four column centered grid">
         <form onSubmit={this.handleSubmit} className="ui form centered" id="signlog">
+        <ul>{this.state.errors.map((error) => <li style={{"color":"red"}}>{error}</li>)}</ul>
           <div className="field">
             <label htmlFor="name">Name</label>
             <input onChange={ this.onChange } id="name" type="text" name="name" placeholder="Name" value={this.state.name}/>
