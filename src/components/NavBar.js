@@ -5,15 +5,16 @@ const NavBar = (props) => {
 
   return(
     <div>
-      {props.loggedIn ?
+      {localStorage.user.length > 0 ?
       <div className="ui menu">
-        <Link className="item" id="logo" to={ "/logout" }>trippy.</Link>
+        <Link className="item" id="logo" to={ "/" }>trippy.</Link>
         <div className="right menu">
           <Link className="item" to={ "/logout" }>Log Out</Link>
+          <Link className="item" to={ "/profile" }>Profile</Link>
         </div>
       </div> :
       <div className="ui menu">
-        <Link className="item" id="logo" to={ "/login" }>trippy.</Link>
+        <Link className="item" id="logo" to={ "/" }>trippy.</Link>
         <div className="right menu">
           <Link className="item" to={ "/signup" }>Sign Up</Link>
           <Link className="item" to={ "/login" }>Log In</Link>

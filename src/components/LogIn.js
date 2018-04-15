@@ -36,7 +36,7 @@ export default class SignUp extends Component {
           })
         } else {
           this.setState({ errors: [] })
-          this.props.logUserIn()
+          this.props.loggedInCallback(json)
           this.props.history.push("/plan");
         }
       })

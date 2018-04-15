@@ -2,34 +2,34 @@ import React, {Component} from 'react'
 
 export default class CategoryItem extends Component {
 
-  constructor(){
-    super()
+  handleClick = () => {
+    this.props.history.push('/activities')
   }
 
   render(){
     return(
       <div className="container">
         <div className="row">
-          <div className="col" id="one">
+          <div onClick={this.handleClick} className="col" id="one">
             <p className="text">NIGHT</p>
           </div>
-          <div className="col" id="two">
+          <div onClick={this.handleClick} className="col" id="two">
             <p className="text">EAT</p>
           </div>
         </div>
         <div className="row">
-          <div className="col" id="three">
+          <div onClick={this.handleClick}  className="col" id="three">
             <p className="text">SLEEP</p>
           </div>
-          <div className="col" id="four">
+          <div onClick={this.handleClick} className="col" id="four">
             <p className="text">STAY</p>
           </div>
         </div>
         <div className="row">
-          <div className="col" id="five">
+          <div onClick={this.handleClick} className="col" id="five">
             <p className="text">PARKS</p>
           </div>
-          <div className="col" id="six">
+          <div onClick={this.handleClick} className="col" id="six">
             <p className="text">MUSEUMS</p>
           </div>
         </div>

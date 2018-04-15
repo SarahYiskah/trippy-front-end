@@ -32,7 +32,7 @@ export default class SignUp extends Component {
           });
         } else {
           this.setState({ errors: [] })
-          this.props.logUserIn()
+          this.props.registeredCallback(json)
           this.props.history.push("/plan");
         }
       })

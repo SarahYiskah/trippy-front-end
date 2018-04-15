@@ -7,7 +7,8 @@ import Logout from '../components/Logout';
 import Plan from './Plan'
 import Itinerary from './Itinerary'
 import Activity from './Activity'
-
+import Activities from '../components/Activities'
+import Profile from '../components/Profile'
 import './App.css'
 
 class App extends Component {
@@ -16,23 +17,17 @@ class App extends Component {
     super()
 
     this.state = {
-      loggedIn: false,
       auth: null
     }
   }
 
-  logUserIn = () => {
-    this.setState({
-      loggedIn: true
-    })
-  }
 
   componentDidMount(){
     if (localStorage.user) {
       this.setState({
         auth: JSON.parse(localStorage.user)
       }, ()=> {
-        console.log(this.state)
+        console.log('this is the localStorage', localStorage)
       })
     }
   }
@@ -47,7 +42,6 @@ class App extends Component {
   logout = (history) => {
     localStorage.user = ""
     this.setState({
-      loggedIn: false,
       auth: null
     }, () => history.push("/"))
   }
@@ -57,13 +51,16 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <NavBar loggedIn={this.state.loggedIn}/>
+            <NavBar/>
             <Switch>
-              <Route exact path="/signup" render={(renderProps) => <SignUp logUserIn={this.logUserIn} registeredCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
-              <Route exact path="/login" render={(renderProps) => <LogIn logUserIn={this.logUserIn} loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
-              <Route exact path="/plan" component={Plan} />
-              <Route exact path="/intinerary" component={Itinerary} />
+              <Route exact path="/signup" render={(renderProps) => <SignUp registeredCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
+              <Route exact path="/login" render={(renderProps) => <LogIn loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
+              <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth }/>} />
+              <Route exact path="/plan" render={(renderProps) => {
+                return <Plan history={renderProps.history}/>  }} />
+              <Route exact path="/itinerary" component={Itinerary} />
               <Route exact path="/activity" component={Activity} />
+              <Route exact path="/activities" component={Activities} />
               <Route exact path="/logout" render={ (renderProps) => {
                 return <Logout logout={ this.logout } history={ renderProps.history } />;
               } } />
