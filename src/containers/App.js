@@ -66,7 +66,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/signup" render={(renderProps) => <SignUp registeredCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/login" render={(renderProps) => <LogIn loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
-              <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth }/>} />
+              <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth } history={ renderProps.history }/>} />
               <Route exact path="/plan" render={(renderProps) => {
                 return <Plan history={renderProps.history} setLocation={this.setLocation} setQuery={this.setQuery}/>  }} />
               <Route exact path="/itinerary" component={Itinerary} />
