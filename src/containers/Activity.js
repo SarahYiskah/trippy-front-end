@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ActivityDetails from '../components/ActivityDetails'
 
+
 export default class Activity extends Component {
 
   constructor(props) {

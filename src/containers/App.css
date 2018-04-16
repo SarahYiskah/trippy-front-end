@@ -117,4 +117,16 @@ body {
   text-align: center;
 }
 
-button:focus{background-color:pink;}
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.location-search-input {
+  margin: 10px;
+  padding: 8px 20px;
+  width: 60%;
+  align-content: center;
+}
