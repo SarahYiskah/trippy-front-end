@@ -24,11 +24,11 @@ export default class Filter extends Component {
       .catch(error => console.error('Error', error))
   }
 
-  handleClick = (e) => {
-    this.setState({
-      query: e.target.id
-    }, () => this.props.handleChange(this.state.query))
-  }
+  // handleClick = (e) => {
+  //   this.setState({
+  //     query: e.target.id
+  //   }, () => this.props.handleChange(this.state.query))
+  // }
 
   render() {
     return (

@@ -1,16 +1,39 @@
 import React, {Component} from 'react'
+import { Alert } from 'reactstrap'
 
 export default class CategoryItem extends Component {
 
 
-  handleClick = (e) => {
-    this.props.updateQuery(e.target.parentNode.id)
-    this.props.history.push('/activity')
+  constructor(){
+    super()
+
+    this.state = {
+      visible: false
+    }
   }
+
+  handleClick = (e) => {
+    if (this.props.currentLocation !== '') {
+      this.props.updateQuery(e.target.parentNode.id)
+      this.props.history.push('/activity')
+    } else {
+      this.setState({
+        visible: true
+      })
+    }
+  }
+
+  onDismiss = () => {
+    this.setState({ visible: false });
+  }
+
 
   render(){
     return(
       <div className="container">
+        <Alert color="default" isOpen={this.state.visible} toggle={this.onDismiss}>
+          Please enter a location.
+        </Alert>
         <div className="row">
           <div onClick={this.handleClick} className="col" id="trending" name="trending">
             <p className="text">TRENDING</p>
