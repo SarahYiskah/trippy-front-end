@@ -16,7 +16,9 @@ class App extends Component {
     super()
 
     this.state = {
-      auth: null
+      auth: null,
+      location: '',
+      query: '',
     }
   }
 
@@ -27,6 +29,18 @@ class App extends Component {
         auth: JSON.parse(localStorage.user)
       })
     }
+  }
+
+  setLocation = (newLocation) => {
+    this.setState({
+      location: newLocation
+    })
+  }
+
+  setQuery = (newQuery) => {
+    this.setState({
+      query: newQuery
+    })
   }
 
   gotAuthToken = (user) => {
@@ -54,9 +68,11 @@ class App extends Component {
               <Route exact path="/login" render={(renderProps) => <LogIn loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth }/>} />
               <Route exact path="/plan" render={(renderProps) => {
-                return <Plan history={renderProps.history}/>  }} />
+                return <Plan history={renderProps.history} setLocation={this.setLocation} setQuery={this.setQuery}/>  }} />
               <Route exact path="/itinerary" component={Itinerary} />
-              <Route exact path="/activity" component={Activity} />
+              <Route exact path="/activity" render={(renderProps) => {
+                return <Activity history={renderProps.history} location={this.state.location} query={this.state.query} />
+              }}/>
               <Route exact path="/logout" render={ (renderProps) => {
                 return <Logout logout={ this.logout } history={ renderProps.history } />;
               } } />

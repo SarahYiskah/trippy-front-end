@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 
 export default class CategoryItem extends Component {
 
-  handleClick = () => {
+
+  handleClick = (e) => {
+    this.props.updateQuery(e.target.parentNode.id)
     this.props.history.push('/activity')
   }
 
@@ -10,27 +12,27 @@ export default class CategoryItem extends Component {
     return(
       <div className="container">
         <div className="row">
-          <div onClick={this.handleClick} className="col" id="one">
-            <p className="text">NIGHT</p>
+          <div onClick={this.handleClick} className="col" id="trending" name="trending">
+            <p className="text">TRENDING</p>
           </div>
-          <div onClick={this.handleClick} className="col" id="two">
+          <div onClick={this.handleClick} className="col" id="food" name="food">
             <p className="text">EAT</p>
           </div>
         </div>
         <div className="row">
-          <div onClick={this.handleClick}  className="col" id="three">
-            <p className="text">SLEEP</p>
+          <div onClick={this.handleClick}  className="col" id="outdoors" name="outdoors">
+            <p className="text">OUTDOORS</p>
           </div>
-          <div onClick={this.handleClick} className="col" id="four">
-            <p className="text">STAY</p>
+          <div onClick={this.handleClick} className="col" id="sights" name="sights">
+            <p className="text">SIGHTS</p>
           </div>
         </div>
         <div className="row">
-          <div onClick={this.handleClick} className="col" id="five">
-            <p className="text">PARKS</p>
+          <div onClick={this.handleClick} className="col" id="drinks" name="drinks">
+            <p className="text">NIGHT</p>
           </div>
-          <div onClick={this.handleClick} className="col" id="six">
-            <p className="text">MUSEUMS</p>
+          <div onClick={this.handleClick} className="col" id="shops" name="shops">
+            <p className="text">SHOPS</p>
           </div>
         </div>
       </div>

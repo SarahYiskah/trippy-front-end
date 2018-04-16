@@ -5,28 +5,41 @@ import CategoryItems from '../components/CategoryItems'
 
 export default class Plan extends Component {
 
-  state = {
-    query: '',
-    location: '',
-    items: []
+  constructor(){
+    super()
+
+    this.state = {
+      query: '',
+      location: ''
+    }
+
   }
 
   updateQuery = (searchTerm) => {
+    console.log('inside update query')
+    console.log(searchTerm)
     this.setState({
       query: searchTerm
-    })
+    }, () => this.props.setQuery(this.state.query))
   }
+
+  updateLocation = (input) => {
+    this.setState({
+      location: input
+    }, () => this.props.setLocation(this.state.location))
+  }
+
 
   render(){
     return(
       <div className="ui centered grid">
         <div className="one column row">
           <div className="center aligned column">
-            <Filter searchby="location" query={this.state.query} updateQuery={this.updateQuery}/>
+            <Filter searchby="location" handleChange={this.updateLocation}/>
           </div>
         </div>
         <div>
-          <CategoryItems location={this.state.location} history={this.props.history}/>
+          <CategoryItems history={this.props.history} updateQuery={this.updateQuery}/>
         </div>
       </div>
     )

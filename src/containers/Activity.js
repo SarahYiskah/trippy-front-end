@@ -1,24 +1,39 @@
 import React, {Component} from 'react'
 import ActivityDetails from '../components/ActivityDetails'
+import Plan from './Plan'
 
-export default class Activities extends Component {
+export default class Activity extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      query: 'food',
+      location: this.props.location,
+      venueData: []
+    }
+  }
 
 
   componentDidMount = () => {
-    fetch('https://api.foursquare.com/v2/venues/explore?near=NYC/&section=food/&oauth_token=XNMAXWSXRQOYGPCLXZQF4Y0RQ3DZYU4EGPKML2Y0IM2S2PDA&v=20180416')
+    fetch(`https://api.foursquare.com/v2/venues/explore?near=${this.state.location}/&section=food/&oauth_token=XNMAXWSXRQOYGPCLXZQF4Y0RQ3DZYU4EGPKML2Y0IM2S2PDA&v=20180416`)
     .then(res => res.json())
-    .then(json => console.log(json.response.groups[0].items))
+    .then(json => {
+       this.setState({
+         venueData: json.response.groups[0].items
+       })
+    })
+  }
+
+  renderActivityDetails = () => {
+    return this.state.venueData.map(venue => <ActivityDetails details={venue} key={venue.id}/>)
   }
 
   render(){
+    console.log(this.props)
     return(
       <div>
-      {/*we need to bring up the specific activities of the ppl the user is following. */}
-        <ActivityDetails />
-        <ActivityDetails />
-        <ActivityDetails />
-        <ActivityDetails />
-        <ActivityDetails />
+      {this.renderActivityDetails()}
       </div>
     )
   }
