@@ -8,6 +8,7 @@ const NavBar = (props) => {
       {localStorage.user !== '' ?
       <div className="ui menu">
         <Link className="item" id="logo" to={ "/" }>trippy.</Link>
+        <Link className="item" to={ "/plan" }>Plan</Link>
         <div className="right menu">
           <Link className="item" to={ "/logout" }>Log Out</Link>
           <Link className="item" to={ "/profile" }>Profile</Link>

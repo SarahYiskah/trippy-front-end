@@ -2,10 +2,6 @@ import React, {Component} from 'react'
 
 export default class ActivityDetails extends Component {
 
-  constructor(props){
-    super(props)
-  }
-
   render(){
     return(
       <div>
@@ -15,9 +11,9 @@ export default class ActivityDetails extends Component {
             <div className="meta">
               {this.props.details.venue.location.formattedAddress}
             </div>
-            <div className="description">
+            {/* <div className="description">
               {this.props.details.tips[0].text} - {this.props.details.tips[0].user.firstName}
-            </div>
+            </div> */}
           </div>
           <div className="ui bottom attached button">
             <i className="add icon"></i>
