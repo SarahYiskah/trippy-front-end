@@ -82,7 +82,7 @@ export default class Itinerary extends Component {
         <br />
         <div className="ui grid">
           <div className="ui list">
-          {this.state.itineraries.map(trip => <ItineraryDetails key={trip.id} trip={trip} auth={this.props.auth}/>)}
+          {this.state.itineraries.map(trip => <ItineraryDetails clickHandle={this.props.clickHandle} key={trip.id} trip={trip} auth={this.props.auth}/>)}
           </div>
         </div>
         <button onClick={this.handleClick} className="add-to-trip">

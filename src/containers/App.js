@@ -57,6 +57,10 @@ class App extends Component {
     }, () => history.push("/"))
   }
 
+  clickHandle = (activities) => {
+    return activities.map(activity => <h3 key={activity.id}>{activity.name}</h3>)
+  }
+
   render() {
     return (
       <div className="App">
@@ -70,7 +74,7 @@ class App extends Component {
               <Route exact path="/plan" render={(renderProps) => {
                 return <Plan history={renderProps.history} setLocation={this.setLocation} setQuery={this.setQuery} currentLocation={this.state.location}/>  }} />
               <Route exact path="/itinerary" render={(renderProps) => {
-                return <Itinerary auth={ this.state.auth } history={ renderProps.history }/> }} />
+                return <Itinerary auth={ this.state.auth } clickHandle={this.clickHandle} history={ renderProps.history }/> }} />
               <Route exact path="/activity" render={(renderProps) => {
                 return <Activity history={renderProps.history} location={this.state.location} query={this.state.query} auth={this.state.auth} />
               }}/>

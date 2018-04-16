@@ -49,7 +49,7 @@ export default class ItineraryDetails extends Component {
     return(
       <div onClick={this.handleClick}>
       <h2>{this.state.trip.name}</h2>
-      {this.state.clicked ? this.state.activities.map(activity => <h3 key={activity.id}>{activity.name}</h3>) : null}
+      {this.state.clicked ? this.props.clickHandle(this.state.activities) : null}
       </div>
     )
   }
