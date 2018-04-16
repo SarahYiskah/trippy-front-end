@@ -19,6 +19,7 @@ const NavBar = (props) => {
   return(
     <div>
       {localStorage.user !== '' ?
+      <div>
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/">trippy</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
@@ -39,12 +40,13 @@ const NavBar = (props) => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <NavLink href="/login">Logout</NavLink>
+                  <NavLink href="/logout">Logout</NavLink>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
       </Navbar>
+    </div>
       :
       // <div className="ui menu">
       //   <Link className="item" id="logo" to={ "/" }>trippy.</Link>
@@ -53,9 +55,10 @@ const NavBar = (props) => {
       //     <Link className="item" to={ "/login" }>Log In</Link>
       //   </div>
       // </div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">trippy</NavbarBrand>
-        <NavbarToggler onClick={this.toggle} />
+      <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">trippy</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink href="/signup">Sign Up</NavLink>
@@ -64,7 +67,8 @@ const NavBar = (props) => {
               <NavLink href="/login">Log In</NavLink>
             </NavItem>
           </Nav>
-      </Navbar>
+        </Navbar>
+      </div>
       }
     </div>
   )

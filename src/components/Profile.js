@@ -33,6 +33,16 @@ class Profile extends Component {
     }
   }
 
+<<<<<<< HEAD
+=======
+
+  // componentDidMount = () => {
+  //   this.tryToGetProfile('', this.props, 'user')
+  //   this.tryToGetProfile('/followers', this.props, 'followers')
+  //   this.tryToGetProfile('/following', this.props, 'following')
+  // }
+
+>>>>>>> 6995349b2173cc219485aef5926efc6f06d4b4a9
   componentWillReceiveProps = (nextProps) => {
     this.tryToGetProfile('', nextProps, 'user')
     this.tryToGetProfile('/followers', nextProps, 'followers')
