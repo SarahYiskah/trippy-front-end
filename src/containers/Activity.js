@@ -1,9 +1,5 @@
 import React, {Component} from 'react'
 import ActivityDetails from '../components/ActivityDetails'
-<<<<<<< HEAD
-
-=======
->>>>>>> 79faac848c87d5936fc722c8ff485f7792be1778
 
 export default class Activity extends Component {
 
@@ -30,7 +26,8 @@ export default class Activity extends Component {
   }
 
   renderActivityDetails = () => {
-    return this.state.venueData.map(venue => <ActivityDetails details={venue} key={venue.id}/>)
+    console.log(this.state.venueData[0])
+    return this.state.venueData.map(venue => <ActivityDetails details={venue} key={venue.venue.id}/>)
   }
 
   render(){

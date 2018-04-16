@@ -20,7 +20,7 @@ export default class ActivityDetails extends Component {
       <div>
         <div className="activity-box">
           <div className="content">
-            <div className="title">{this.props.details.venue.name}</div>
+            <div className="title"><a href={this.props.details.venue.url} target="_blank">{this.props.details.venue.name}</a></div>
             <div className="meta">
               {this.props.details.venue.location.formattedAddress}
             </div>
@@ -28,10 +28,10 @@ export default class ActivityDetails extends Component {
               {this.props.details.tips ? `${this.props.details.tips[0].text} -  ${this.props.details.tips[0].user.firstName}` : null}
             </div>
           </div>
-          <div onClick={this.handleClick} className="ui bottom attached button" id={JSON.stringify(this.props.details.venue)}>
+          <button onClick={this.handleClick} className="add-to-trip" id={JSON.stringify(this.props.details.venue)}>
             <i className="add icon"></i>
             Add to trips
-          </div>
+          </button>
           {this.state.clicked ? <ListOfItineraries /> : null}
         </div>
       </div>
