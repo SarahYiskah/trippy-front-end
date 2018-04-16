@@ -5,7 +5,7 @@ const NavBar = (props) => {
 
   return(
     <div>
-      {localStorage.user.length > 0 ?
+      {localStorage.user !== '' ?
       <div className="ui menu">
         <Link className="item" id="logo" to={ "/" }>trippy.</Link>
         <div className="right menu">
