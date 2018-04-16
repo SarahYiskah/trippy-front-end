@@ -5,6 +5,7 @@ export default class Itinerary extends Component {
   state = {
     itineraries: [],
     errors: [],
+    name: '',
     clicked: false
   }
 
@@ -37,8 +38,40 @@ export default class Itinerary extends Component {
   }
 
   handleClick = () => {
-    console.log("i will make a new trip for u")
-    this.setState({clicked: true})
+    this.setState({clicked: !this.state.clicked})
+  }
+
+  createNewItinerary = (name) => {
+    fetch(`http://localhost:3000/api/v1/users/${ this.props.auth.user_id }/itineraries`, {
+      method: "POST",
+      body: JSON.stringify({name}),
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json",
+        "Authorization": `Token token=${this.props.auth.token}`
+      }
+    })
+    .then((res) => res.json())
+    .then((json) => {
+    json.error ? this.setState({
+      errors: [json]
+    }) : this.setState({
+      itineraries: json
+    })})
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    e.target.children[1].value.length > 0 ? this.createNewItinerary(e.target.children[1].value) : null
+    this.setState({
+      name: ''
+    })
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      name: e.target.value
+    })
   }
 
   render(){
@@ -56,7 +89,7 @@ export default class Itinerary extends Component {
           <i className="add icon"></i>
           New Trip
         </button>
-        {this.state.clicked ? <div><label htmlFor="title">Title</label><input type="text" id="title"/></div> : null}
+        {this.state.clicked ? <form onSubmit={this.handleSubmit}><label htmlFor="title">Title</label><input onChange={this.handleChange} type="text" id="title" value={this.state.name}/><input type="submit"/></form> : null}
       </div>
     )
   }

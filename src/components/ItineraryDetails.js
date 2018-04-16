@@ -6,6 +6,7 @@ export default class ItineraryDetails extends Component {
     this.state = {
       trip: props.trip,
       activities: [],
+      clicked: false,
       errors: []
     }
   }
@@ -21,7 +22,6 @@ export default class ItineraryDetails extends Component {
         })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
       json.error ? this.setState({
         errors: [json]
       }) : this.setState({
@@ -40,16 +40,16 @@ export default class ItineraryDetails extends Component {
   }
 
   handleClick = () => {
-    return this.state.activities.map(activity => {
-      return <h3 key={activity.id}>{activity.name}</h3>
+    this.setState({
+      clicked: !this.state.clicked
     })
   }
 
   render(){
-    console.log(this.state)
     return(
       <div onClick={this.handleClick}>
       <h2>{this.state.trip.name}</h2>
+      {this.state.clicked ? this.state.activities.map(activity => <h3 key={activity.id}>{activity.name}</h3>) : null}
       </div>
     )
   }
