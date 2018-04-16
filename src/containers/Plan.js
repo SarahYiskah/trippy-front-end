@@ -16,11 +16,7 @@ export default class Plan extends Component {
   }
 
   updateQuery = (searchTerm) => {
-    console.log('inside update query')
-    console.log(searchTerm)
-    this.setState({
-      query: searchTerm
-    }, () => this.props.setQuery(this.state.query))
+    this.props.setQuery(searchTerm)
   }
 
   updateLocation = (input) => {

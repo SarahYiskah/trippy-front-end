@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Poiret+One');
 
+body {
+  margin: 10px;
+}
+
 #signlog {
   margin-top: 25vh;
   padding: 10px;
@@ -69,4 +73,24 @@
 #shops {
   background-image: url('https://images.unsplash.com/photo-1513009765676-6c515cdf2c57?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8d72ab3b73849788d6acbf6050986907&auto=format&fit=crop&w=1650&q=80');
   background-size: cover;
+}
+
+.activity-container {
+  display: flex;
+  direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+
+.activity-box {
+  width: 400px;
+  height: 300px;
+  padding: 20px;
+  border: 3px solid black;
+}
+
+.title{
+  font-size: 1.5rem;
+  padding-bottom: 10px;
 }
