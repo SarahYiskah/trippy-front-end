@@ -26,8 +26,6 @@ class App extends Component {
     if (localStorage.user) {
       this.setState({
         auth: JSON.parse(localStorage.user)
-      }, ()=> {
-        console.log('this is the localStorage', localStorage)
       })
     }
   }

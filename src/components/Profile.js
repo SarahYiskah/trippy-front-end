@@ -10,12 +10,12 @@ class Profile extends Component {
 
   tryToGetProfile = (propsToLookAt) => {
     if (propsToLookAt.auth) {
-      fetch(`http://localhost:3001/users/${ propsToLookAt.auth.user_id }`,
-        method: 'GET',
-        headers: {
+      console.log(propsToLookAt.auth.token)
+      fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }`,
+        {
           "Content-Type": "application/json",
           "Accepts": "application/json",
-          "Authorization": propsToLookAt.auth.token
+          "Authorization": `Token token=${propsToLookAt.auth.token}`
       })
       .then((res) => res.json())
       .then((json) => this.setState({
