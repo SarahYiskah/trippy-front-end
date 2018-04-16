@@ -33,16 +33,6 @@ class Profile extends Component {
     }
   }
 
-<<<<<<< HEAD
-=======
-
-  // componentDidMount = () => {
-  //   this.tryToGetProfile('', this.props, 'user')
-  //   this.tryToGetProfile('/followers', this.props, 'followers')
-  //   this.tryToGetProfile('/following', this.props, 'following')
-  // }
-
->>>>>>> 6995349b2173cc219485aef5926efc6f06d4b4a9
   componentWillReceiveProps = (nextProps) => {
     this.tryToGetProfile('', nextProps, 'user')
     this.tryToGetProfile('/followers', nextProps, 'followers')
@@ -54,17 +44,29 @@ class Profile extends Component {
       <div>
       {this.state.user.error ? <h2>You do not have access to this profile</h2> :
       <div>
-      <h2>{this.state.user.name}</h2>
-      <h3>{this.state.user.email}</h3>
+        <div className="profile-container">
+        <h2>Account Settings</h2>
+        <h4>You are logged in as: {this.state.user.name}</h4>
+        <h4>Email: {this.state.user.email}</h4>
+        </div>
+
+      <div className="profile-container">
       <Itinerary auth={this.props.auth}/>
-      <br/><br/><br/><br/>
+      </div>
+
+      <div className="profile-container">
       {this.state.following.length > 0 ?
       <User users={this.state.following} title="Following"/> : <h4>You are not following anyone</h4>}
       <br/><br/><br/><br/>
+      </div>
+
+      <div className="profile-container">
       {this.state.followers.length > 0 ?
       <User users={this.state.followers} title="Followers"/> : <h4>You have no followers</h4>}
       </div>
-    }</div>
+    </div>
+    }
+    </div>
     )
   }
 }

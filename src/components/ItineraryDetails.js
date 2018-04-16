@@ -48,7 +48,7 @@ export default class ItineraryDetails extends Component {
   render(){
     return(
       <div onClick={this.handleClick}>
-      <h2>{this.state.trip.name}</h2>
+      <h4>{this.state.trip.name}</h4>
       {this.state.clicked ? this.props.clickHandle(this.state.activities) : null}
       </div>
     )
