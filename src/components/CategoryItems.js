@@ -31,7 +31,7 @@ export default class CategoryItem extends Component {
   render(){
     return(
       <div className="container">
-        <Alert color="default" isOpen={this.state.visible} toggle={this.onDismiss}>
+        <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
           Please enter a location.
         </Alert>
         <div className="row">

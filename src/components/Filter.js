@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Form, FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
 export default class Filter extends Component {
@@ -24,12 +25,6 @@ export default class Filter extends Component {
       .catch(error => console.error('Error', error))
   }
 
-  // handleClick = (e) => {
-  //   this.setState({
-  //     query: e.target.id
-  //   }, () => this.props.handleChange(this.state.query))
-  // }
-
   render() {
     return (
       <PlacesAutocomplete
@@ -38,8 +33,8 @@ export default class Filter extends Component {
         onSelect={this.handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps }) => (
-          <div>
-            <input
+          <div className="filter-container">
+            <Input
               {...getInputProps({
                 placeholder: 'Search Places ...',
                 className: 'location-search-input'

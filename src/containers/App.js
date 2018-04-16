@@ -62,7 +62,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <NavBar/>
+            <NavBar />
             <Switch>
               <Route exact path="/signup" render={(renderProps) => <SignUp registeredCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/login" render={(renderProps) => <LogIn loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
