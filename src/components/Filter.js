@@ -2,17 +2,17 @@ import React, {Component} from 'react'
 
 export default class Filter extends Component {
 
-  constructor(props){
-    super(props)
+  constructor(){
+    super()
     this.state = {
-      query: this.props.query
+      query: ''
     }
   }
 
   handleChange = (e) => {
     this.setState({
       query: e.target.value
-    }, () => this.props.updateQuery(this.state.query))
+    }, () => this.props.handleChange(this.state.query))
   }
 
   render(){

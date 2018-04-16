@@ -41,32 +41,32 @@
   padding-top: 25%;
 }
 
-#one {
+#trending {
   background-image: url('https://images.unsplash.com/photo-1492455417212-e162ed4446e1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e8bd81d8bc531873ab3af61d83ef0c19&auto=format&fit=crop&w=2550&q=80');
   background-size: cover;
 }
 
-#two {
+#food {
   background-image: url('https://images.unsplash.com/photo-1470114755716-3e1124c6c3bd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5b60598a37f08d17dc986b56247eed65&auto=format&fit=crop&w=1376&q=80');
   background-size: cover;
 }
 
-#three {
+#outdoors {
   background-image: url('https://images.unsplash.com/photo-1414542563971-94513793d046?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=df19d8729ad34a6056090cdcabab31f7&auto=format&fit=crop&w=1650&q=80');
   background-size: cover;
 }
 
-#four {
+#sights {
   background-image: url('https://images.unsplash.com/photo-1519056312994-33952f238fac?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f0c98978f83b496d9cdcd9867ac6151e&auto=format&fit=crop&w=2588&q=80');
   background-size: cover;
 }
 
-#five {
+#drinks {
   background-image: url('https://images.unsplash.com/photo-1443186547344-2437c72a228e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=35f2c2165f80bff10de0f19f0a4909b7&auto=format&fit=crop&w=800&q=60');
   background-size: cover;
 }
 
-#six {
+#shops {
   background-image: url('https://images.unsplash.com/photo-1513009765676-6c515cdf2c57?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8d72ab3b73849788d6acbf6050986907&auto=format&fit=crop&w=1650&q=80');
   background-size: cover;
 }
