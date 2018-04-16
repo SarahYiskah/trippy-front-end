@@ -24,9 +24,9 @@ export default class ActivityDetails extends Component {
             <div className="meta">
               {this.props.details.venue.location.formattedAddress}
             </div>
-            <div className="description">
+            {/* <div className="description">
               {this.props.details.tips[0].text} - {this.props.details.tips[0].user.firstName}
-            </div>
+            </div> */}
           </div>
           <div onClick={this.handleClick} className="ui bottom attached button" id={JSON.stringify(this.props.details.venue)}>
             <i className="add icon"></i>
