@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import ListOfItineraries from '../containers/ListOfItineraries'
+import Itinerary from '../containers/Itinerary'
 
 export default class ActivityDetails extends Component {
 
@@ -32,8 +32,8 @@ export default class ActivityDetails extends Component {
             <i className="add icon"></i>
             Add to trips
           </button>
-          {this.state.clicked ? <ListOfItineraries /> : null}
         </div>
+        {this.state.clicked ? <Itinerary auth={this.props.auth} /> : null}
       </div>
     )
   }

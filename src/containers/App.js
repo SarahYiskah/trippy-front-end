@@ -72,7 +72,7 @@ class App extends Component {
               <Route exact path="/itinerary" render={(renderProps) => {
                 return <Itinerary auth={ this.state.auth } history={ renderProps.history }/> }} />
               <Route exact path="/activity" render={(renderProps) => {
-                return <Activity history={renderProps.history} location={this.state.location} query={this.state.query} />
+                return <Activity history={renderProps.history} location={this.state.location} query={this.state.query} auth={this.state.auth} />
               }}/>
               <Route exact path="/logout" render={ (renderProps) => {
                 return <Logout logout={ this.logout } history={ renderProps.history } />;

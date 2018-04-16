@@ -39,13 +39,17 @@ export default class ItineraryDetails extends Component {
     this.tryToGetActivities(`/itineraries/${this.state.trip.id}`, nextProps, 'activities')
   }
 
+  handleClick = () => {
+    return this.state.activities.map(activity => {
+      return <h3 key={activity.id}>{activity.name}</h3>
+    })
+  }
 
   render(){
     console.log(this.state)
     return(
-      <div>
+      <div onClick={this.handleClick}>
       <h2>{this.state.trip.name}</h2>
-      {this.state.activities.map(activity => <h3 key={activity.id}>{activity.name}</h3>)}
       </div>
     )
   }

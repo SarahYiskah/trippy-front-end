@@ -35,6 +35,11 @@ export default class Itinerary extends Component {
     this.tryToGetItineraries('/itineraries', nextProps, 'itineraries')
   }
 
+  handleClick = () => {
+    console.log("i will make a new trip for u")
+    return (<div><label htmlFor="title">Title</label><input type="text" id="title"/></div>)
+  }
+
   render(){
     return(
       <div>
@@ -45,6 +50,10 @@ export default class Itinerary extends Component {
           {this.state.itineraries.map(trip => <ItineraryDetails key={trip.id} trip={trip} auth={this.props.auth}/>)}
           </div>
         </div>
+        <button onClick={this.handleClick} className="add-to-trip">
+          <i className="add icon"></i>
+          New Trip
+        </button>
       </div>
     )
   }
