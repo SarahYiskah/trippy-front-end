@@ -7,7 +7,6 @@ import Logout from '../components/Logout';
 import Plan from './Plan'
 import Itinerary from './Itinerary'
 import Activity from './Activity'
-import Activities from '../components/Activities'
 import Profile from '../components/Profile'
 import './App.css'
 
@@ -58,7 +57,6 @@ class App extends Component {
                 return <Plan history={renderProps.history}/>  }} />
               <Route exact path="/itinerary" component={Itinerary} />
               <Route exact path="/activity" component={Activity} />
-              <Route exact path="/activities" component={Activities} />
               <Route exact path="/logout" render={ (renderProps) => {
                 return <Logout logout={ this.logout } history={ renderProps.history } />;
               } } />

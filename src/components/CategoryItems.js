@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 export default class CategoryItem extends Component {
 
   handleClick = () => {
-    this.props.history.push('/activities')
+    this.props.history.push('/activity')
   }
 
   render(){
