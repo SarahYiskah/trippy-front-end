@@ -1,5 +1,6 @@
 import React, { Component}  from 'react';
 import User from '../containers/User';
+import Itinerary from '../containers/Itinerary'
 
 class Profile extends Component {
 
@@ -52,6 +53,7 @@ class Profile extends Component {
       <div>
       <h2>{this.state.user.name}</h2>
       <h3>{this.state.user.email}</h3>
+      <Itinerary auth={this.props.auth}/>
       <br/><br/><br/><br/>
       {this.state.following.length > 0 ?
       <User users={this.state.following} title="Following"/> : <h4>You are not following anyone</h4>}

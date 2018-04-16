@@ -1,6 +1,19 @@
 import React, {Component} from 'react'
+import ListOfItineraries from '../containers/ListOfItineraries'
 
 export default class ActivityDetails extends Component {
+
+  state = {
+    clicked: false,
+    Activity: {}
+  }
+
+  handleClick = (e) => {
+    this.setState({
+      clicked: !this.state.clicked,
+      activity: JSON.parse(e.target.id)
+    })
+  }
 
   render(){
     return(
@@ -15,10 +28,11 @@ export default class ActivityDetails extends Component {
               {this.props.details.tips ? `${this.props.details.tips[0].text} -  ${this.props.details.tips[0].user.firstName}` : null}
             </div>
           </div>
-          <div className="ui bottom attached button">
+          <div onClick={this.handleClick} className="ui bottom attached button" id={JSON.stringify(this.props.details.venue)}>
             <i className="add icon"></i>
             Add to trips
           </div>
+          {this.state.clicked ? <ListOfItineraries /> : null}
         </div>
       </div>
     )

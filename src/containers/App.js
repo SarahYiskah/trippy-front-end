@@ -69,7 +69,8 @@ class App extends Component {
               <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth } history={ renderProps.history }/>} />
               <Route exact path="/plan" render={(renderProps) => {
                 return <Plan history={renderProps.history} setLocation={this.setLocation} setQuery={this.setQuery}/>  }} />
-              <Route exact path="/itinerary" component={Itinerary} />
+              <Route exact path="/itinerary" render={(renderProps) => {
+                return <Itinerary auth={ this.state.auth } history={ renderProps.history }/> }} />
               <Route exact path="/activity" render={(renderProps) => {
                 return <Activity history={renderProps.history} location={this.state.location} query={this.state.query} />
               }}/>

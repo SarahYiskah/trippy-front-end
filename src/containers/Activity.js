@@ -1,5 +1,9 @@
 import React, {Component} from 'react'
 import ActivityDetails from '../components/ActivityDetails'
+<<<<<<< HEAD
+
+=======
+>>>>>>> 79faac848c87d5936fc722c8ff485f7792be1778
 
 export default class Activity extends Component {
 
