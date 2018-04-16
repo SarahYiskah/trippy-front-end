@@ -4,26 +4,24 @@ import React, { Component}  from 'react';
 class Profile extends Component {
 
   state = {
-    user: []
+    user: {}
   }
 
 
   tryToGetProfile = (propsToLookAt) => {
     if (propsToLookAt.auth) {
       console.log(propsToLookAt.auth.token)
-      console.log(propsToLookAt.auth.user_id)
-      fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }`,
-        {
-          // "Content-Type": "application/json",
-          // "Accepts": "application/json",
+      fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }`, {
+        headers:  {
+          "Content-Type": "application/json",
+          "Accepts": "application/json",
           "Authorization": `Token token=${propsToLookAt.auth.token}`
-      })
-      .then(res => res)
-      .then(json => console.log(json))
-
-      // this.setState({
-      //   user: json
-      // }, () => console.log("you just set the state to", this.state.user)))
+        }
+        })
+      .then((res) => res.json())
+      .then((json) => this.setState({
+        user: json
+      }, () => console.log("you just set the state to", this.state.user)))
     }
   }
 
