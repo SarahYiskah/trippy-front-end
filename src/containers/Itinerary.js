@@ -4,7 +4,8 @@ import ItineraryDetails from '../components/ItineraryDetails'
 export default class Itinerary extends Component {
   state = {
     itineraries: [],
-    errors: []
+    errors: [],
+    clicked: false
   }
 
   tryToGetItineraries = (link, propsToLookAt, setStateTo) => {
@@ -37,10 +38,11 @@ export default class Itinerary extends Component {
 
   handleClick = () => {
     console.log("i will make a new trip for u")
-    return (<div><label htmlFor="title">Title</label><input type="text" id="title"/></div>)
+    this.setState({clicked: true})
   }
 
   render(){
+    const newTrip = <div><label htmlFor="title">Title</label><input type="text" id="title"/></div>
     return(
       <div>
         <h1>Upcoming Trips</h1>
@@ -54,6 +56,7 @@ export default class Itinerary extends Component {
           <i className="add icon"></i>
           New Trip
         </button>
+        {this.state.clicked ? <div><label htmlFor="title">Title</label><input type="text" id="title"/></div> : null}
       </div>
     )
   }
