@@ -5,27 +5,6 @@ import CategoryItems from '../components/CategoryItems'
 
 export default class Plan extends Component {
 
-  // constructor(){
-  //   super()
-  //
-  //   this.state = {
-  //     query: '',
-  //     location: ''
-  //   }
-  //
-  // }
-
-  updateQuery = (searchTerm) => {
-    this.props.setQuery(searchTerm)
-  }
-
-  // updateLocation = (input) => {
-  //   this.setState({
-  //     location: input
-  //   }, () => this.props.setLocation(this.state.location))
-  // }
-
-
   render(){
     return(
       <div className="ui centered grid">
@@ -35,7 +14,7 @@ export default class Plan extends Component {
           </div>
         </div>
         <div>
-          <CategoryItems history={this.props.history} updateQuery={this.updateQuery}/>
+          <CategoryItems history={this.props.history} updateQuery={this.props.setQuery}/>
         </div>
       </div>
     )
