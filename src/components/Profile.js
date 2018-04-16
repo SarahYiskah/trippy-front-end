@@ -1,5 +1,5 @@
 import React, { Component}  from 'react';
-// import gat from '../modules/gat';
+import User from '../containers/User';
 
 class Profile extends Component {
 
@@ -52,14 +52,12 @@ class Profile extends Component {
       <div>
       <h2>{this.state.user.name}</h2>
       <h3>{this.state.user.email}</h3>
-      {this.state.following.length > 0 ? <div>
-      <h4>Following</h4>
-      {this.state.following.map(friend => <p key={friend.id}>{friend.name}</p>)}
-      </div> : <h4>You are not following anyone</h4>}
-      {this.state.followers.length > 0 ? <div>
-      <h4>Followers</h4>
-      {this.state.followers.map(friend => <p key={friend.id}>{friend.name}</p>)}
-      </div> : <h4>You have no followers</h4>}
+      <br/><br/><br/><br/>
+      {this.state.following.length > 0 ?
+      <User users={this.state.following} title="Following"/> : <h4>You are not following anyone</h4>}
+      <br/><br/><br/><br/>
+      {this.state.followers.length > 0 ?
+      <User users={this.state.followers} title="Followers"/> : <h4>You have no followers</h4>}
       </div>
     }</div>
     )
