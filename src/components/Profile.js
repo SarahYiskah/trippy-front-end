@@ -6,13 +6,14 @@ class Profile extends Component {
   state = {
     user: {},
     followers: [],
-    following: []
+    following: [],
+    errors: []
   }
 
 
-  tryToGetProfile = (propsToLookAt) => {
+  tryToGetProfile = (link, propsToLookAt, setStateTo) => {
     if (propsToLookAt.auth) {
-      fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }`, {
+      fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }${link}`, {
         headers:  {
           "Content-Type": "application/json",
           "Accepts": "application/json",
@@ -22,61 +23,26 @@ class Profile extends Component {
       .then((res) => res.json())
       .then((json) => {
       json.error ? this.setState({
-        user: {error: true}
+        errors: [json]
       }) : this.setState({
-        user: json
+        [setStateTo]: json
       })})
+    } else {
+      propsToLookAt.history.push('/login')
     }
   }
 
-  tryToGetFollowers = (propsToLookAt) => {
-    if (propsToLookAt.auth) {
-      fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }/followers`, {
-        headers:  {
-          "Content-Type": "application/json",
-          "Accepts": "application/json",
-          "Authorization": `Token token=${propsToLookAt.auth.token}`
-        }
-        })
-      .then((res) => res.json())
-      .then((json) => {
-      json.error ? this.setState({
-        followers: []
-      }) : this.setState({
-        followers: json
-      })})
-    }
-  }
-
-  tryToGetFollowing = (propsToLookAt) => {
-    if (propsToLookAt.auth) {
-      fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }/following`, {
-        headers:  {
-          "Content-Type": "application/json",
-          "Accepts": "application/json",
-          "Authorization": `Token token=${propsToLookAt.auth.token}`
-        }
-        })
-      .then((res) => res.json())
-      .then((json) => {
-      json.error ? this.setState({
-        following: []
-      }) : this.setState({
-        following: json
-      })})
-    }
-  }
 
   componentDidMount = () => {
-    this.tryToGetProfile(this.props)
-    this.tryToGetFollowers(this.props)
-    this.tryToGetFollowing(this.props)
+    this.tryToGetProfile('', this.props, 'user')
+    this.tryToGetProfile('/followers', this.props, 'followers')
+    this.tryToGetProfile('/following', this.props, 'following')
   }
 
   componentWillReceiveProps = (nextProps) => {
-    this.tryToGetProfile(nextProps)
-    this.tryToGetFollowers(nextProps)
-    this.tryToGetFollowing(nextProps)
+    this.tryToGetProfile('', nextProps, 'user')
+    this.tryToGetProfile('/followers', nextProps, 'followers')
+    this.tryToGetProfile('/following', nextProps, 'following')
   }
 
   render(){
