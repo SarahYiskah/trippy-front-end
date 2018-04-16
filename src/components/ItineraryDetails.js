@@ -1,13 +1,16 @@
 import React, {Component} from 'react'
-import ItineraryDetails from '../components/ItineraryDetails'
 
-export default class Itinerary extends Component {
-  state = {
-    itineraries: [],
-    errors: []
+export default class ItineraryDetails extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      trip: props.trip,
+      activities: [],
+      errors: []
+    }
   }
 
-  tryToGetItineraries = (link, propsToLookAt, setStateTo) => {
+  tryToGetActivities = (link, propsToLookAt, setStateTo) => {
     if (propsToLookAt.auth) {
       fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }${link}`, {
         headers:  {
@@ -18,6 +21,7 @@ export default class Itinerary extends Component {
         })
       .then((res) => res.json())
       .then((json) => {
+        console.log(json);
       json.error ? this.setState({
         errors: [json]
       }) : this.setState({
@@ -28,23 +32,20 @@ export default class Itinerary extends Component {
 
 
   componentDidMount = () => {
-    this.tryToGetItineraries('/itineraries', this.props, 'itineraries')
+    this.tryToGetActivities(`/itineraries/${this.state.trip.id}`, this.props, 'activities')
   }
 
   componentWillReceiveProps = (nextProps) => {
-    this.tryToGetItineraries('/itineraries', nextProps, 'itineraries')
+    this.tryToGetActivities(`/itineraries/${this.state.trip.id}`, nextProps, 'activities')
   }
 
+
   render(){
+    console.log(this.state)
     return(
       <div>
-        <h1>Upcoming Trips</h1>
-        <br />
-        <div className="ui grid">
-          <div className="ui list">
-          {this.state.itineraries.map(trip => <ItineraryDetails key={trip.id} trip={trip} auth={this.props.auth}/>)}
-          </div>
-        </div>
+      <h2>{this.state.trip.name}</h2>
+      {this.state.activities.map(activity => <h3 key={activity.id}>{activity.name}</h3>)}
       </div>
     )
   }

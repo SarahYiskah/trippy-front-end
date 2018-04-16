@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ActivityDetails from '../components/ActivityDetails'
-import Plan from './Plan'
+
 
 export default class Activity extends Component {
 
