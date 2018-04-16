@@ -14,7 +14,7 @@ export default class Plan extends Component {
           </div>
         </div>
         <div>
-          <CategoryItems history={this.props.history} updateQuery={this.props.setQuery}/>
+          <CategoryItems history={this.props.history} updateQuery={this.props.setQuery} currentLocation={this.props.currentLocation}/>
         </div>
       </div>
     )

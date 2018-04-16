@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-notification-system": "^0.2.17",
     "react-places-autocomplete": "^7.0.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "reactstrap": "^5.0.0-beta.3"
   },
   "scripts": {
     "start": "react-scripts start",
