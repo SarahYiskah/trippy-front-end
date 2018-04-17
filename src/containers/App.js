@@ -9,6 +9,7 @@ import Plan from './Plan'
 import Itinerary from './Itinerary'
 import Activity from './Activity'
 import Profile from '../components/Profile'
+import ItineraryPage from './ItineraryPage'
 import './App.css'
 
 class App extends Component {
@@ -21,8 +22,15 @@ class App extends Component {
       location: '',
       query: '',
       friendFetch: false,
-      clickedItineraryId: ''
+      clickedItineraryId: '',
+      itineraries: [],
+      itineraryName: '',
+      activities: []
     }
+  }
+
+  setItineraries = (itineraries) => {
+    this.setState({itineraries})
   }
 
 
@@ -60,9 +68,11 @@ class App extends Component {
     }, () => history.push("/"))
   }
 
-  clickHandle = (activities) => {
-    console.log(activities)
-    return activities.map(activity => <h3 key={activity.id}>{activity.name}</h3>)
+  clickHandle = (activities, history, name) => {
+    this.setState({
+      itineraryName: name,
+      activities: activities
+    }, () => history.push('itinerary-page'))
   }
 
 
@@ -74,7 +84,6 @@ class App extends Component {
   }
 
   changeItineraryId = (id) => {
-    console.log("in app changeItineraryId", id)
     this.setState({
       clickedItineraryId: id
     })
@@ -91,13 +100,13 @@ class App extends Component {
               <Route exact path="/signup" render={(renderProps) => <SignUp registeredCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/login" render={(renderProps) => <LogIn loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth } history={ renderProps.history } friendFetch={this.state.friendFetch}/>} />
-
+              <Route exact path="/itinerary-page" render={(renderProps) => <ItineraryPage name={this.state.itineraryName} activities={this.state.activities}/>}/>
               <Route exact path="/feed" render={(renderProps) => <Feed auth={ this.state.auth } />} />
 
               <Route exact path="/plan" render={(renderProps) => {
                 return <Plan history={renderProps.history} setLocation={this.setLocation} setQuery={this.setQuery} currentLocation={this.state.location}/>  }} />
               <Route exact path="/itinerary" render={(renderProps) => {
-                return <Itinerary auth={ this.state.auth } changeItineraryId={this.changeItineraryId} clickHandle={this.clickHandle} history={ renderProps.history }/> }} />
+                return <Itinerary auth={ this.state.auth } changeItineraryId={this.changeItineraryId} clickHandle={this.clickHandle} history={ renderProps.history } setItineraries={this.setItineraries}/> }} />
               <Route exact path="/activity" render={(renderProps) => {
                 return <Activity history={renderProps.history} location={this.state.location} query={this.state.query} auth={this.state.auth} clickedItineraryId={this.state.clickedItineraryId} changeItineraryId={this.changeItineraryId}/>
               }}/>

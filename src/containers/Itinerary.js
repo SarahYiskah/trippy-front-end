@@ -25,7 +25,7 @@ export default class Itinerary extends Component {
         errors: [json]
       }) : this.setState({
         itineraries: json
-      })})
+      }), () => this.props.setItineraries(json)})
     }
   }
 
@@ -85,7 +85,7 @@ export default class Itinerary extends Component {
         <br />
         <div className="ui grid">
           <div className="ui list">
-          {this.state.itineraries.map(trip => <ItineraryDetails clickHandle={this.props.clickHandle} key={trip.id} trip={trip} auth={this.props.auth} changeItineraryId={this.props.changeItineraryId}/>)}
+          {this.state.itineraries.map(trip => <ItineraryDetails clickHandle={this.props.clickHandle} key={trip.id} trip={trip} auth={this.props.auth} changeItineraryId={this.props.changeItineraryId} history={this.props.history}/>)}
           </div>
         </div>
         <Button color="info" onClick={this.handleClick} className="add-to-trip"><i className="add icon"></i>
