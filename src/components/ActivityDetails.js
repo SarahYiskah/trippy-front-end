@@ -39,7 +39,7 @@ export default class ActivityDetails extends Component {
             Add to trips
           </button>
         </div>
-        {this.state.clicked ? <Itinerary auth={this.props.auth} clickHandle={this.props.clickHandle} changeItineraryId={this.props.changeItineraryId}/> : null}
+        {this.state.clicked ? <Itinerary auth={this.props.auth} clickHandle={this.props.clickHandle} changeItineraryId={this.props.changeItineraryId} history={this.props.history}/> : null}
       </div>
     )
   }

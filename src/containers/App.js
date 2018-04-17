@@ -23,7 +23,9 @@ class App extends Component {
       query: '',
       friendFetch: false,
       clickedItineraryId: '',
-      itineraries: []
+      itineraries: [],
+      itineraryName: '',
+      activities: []
     }
   }
 
@@ -66,8 +68,11 @@ class App extends Component {
     }, () => history.push("/"))
   }
 
-  clickHandle = (activities) => {
-    return (this.state.itineraries.map(itinerary => <ItineraryPage key={itinerary.id} itinerary={itinerary} activities={activities} />))
+  clickHandle = (activities, history, name) => {
+    this.setState({
+      itineraryName: name,
+      activities: activities
+    }, () => history.push('itinerary-page'))
   }
 
 
@@ -84,20 +89,6 @@ class App extends Component {
     })
   }
 
-<<<<<<< HEAD
-  componentDidUpdate = () => {
-    fetch('http://localhost:3000/api/v1/reviews', {
-      headers: {
-        "Content-Type": "application/json",
-        "Accepts": "application/json",
-        "Authorization": `Token token=${this.state.auth.token}`
-      }
-    })
-      .then(res => res.json())
-      .then(console.log)
-  }
-=======
->>>>>>> eb4f093484f04aac7fcfddf8975e6832c7f3778a
 
   render() {
     return (
@@ -109,7 +100,7 @@ class App extends Component {
               <Route exact path="/signup" render={(renderProps) => <SignUp registeredCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/login" render={(renderProps) => <LogIn loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth } history={ renderProps.history } friendFetch={this.state.friendFetch}/>} />
-
+              <Route exact path="/itinerary-page" render={(renderProps) => <ItineraryPage name={this.state.itineraryName} activities={this.state.activities}/>}/>
               <Route exact path="/feed" render={(renderProps) => <Feed auth={ this.state.auth } />} />
 
               <Route exact path="/plan" render={(renderProps) => {
