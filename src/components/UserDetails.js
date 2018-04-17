@@ -16,7 +16,7 @@ export default class UserDetails extends Component {
   render(){
     return(
       <div onClick={this.handleClick}>
-        <h4>{this.state.user.name}</h4>
+        <p>{this.state.user.name}</p>
         <p>{this.state.user.email}</p>
       </div>
     )

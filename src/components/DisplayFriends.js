@@ -1,7 +1,19 @@
-import React, { Component}  from 'react';
-
+import React, { Component}  from 'react'
+import { Alert } from 'reactstrap'
 
 export default class DisplayFriends extends Component {
+
+  constructor(){
+    super()
+
+    this.state = {
+      visible: false
+    }
+  }
+
+  onDismiss = () => {
+    this.setState({ visible: false });
+  }
 
   handleClick = (e) => {
     let friend = e.target.id
@@ -23,14 +35,21 @@ export default class DisplayFriends extends Component {
     .then( res => res.json())
     .then( json => {
       this.props.friendFetch(json.user_id)
+      this.setState({
+        visible: true
+      })
     })
-
   }
+
+
 
 
   render(){
     return(
       <div>
+        <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
+          You are now friends
+        </Alert>
 
         <div className="profile-container">
         <h4>Name: {this.props.datum.name}</h4>
