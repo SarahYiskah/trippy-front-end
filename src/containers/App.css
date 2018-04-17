@@ -153,3 +153,13 @@ body {
 .search-bar {
   width: 20%
 }
+
+.avatar {
+  width: 40px;
+}
+
+.workplz {
+  width: 100%;
+  height: 500px;
+  margin: 10px 0px;
+}
