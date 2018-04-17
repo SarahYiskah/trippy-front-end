@@ -7,7 +7,8 @@ export default class ActivityDetails extends Component {
     super(props)
     this.state = {
       clicked: false,
-      clickedItineraryId: props.clickedItineraryId
+      clickedItineraryId: props.clickedItineraryId,
+      alreadyInItinerary: false
     }
   }
 
