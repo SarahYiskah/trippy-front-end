@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import FeedItem from './FeedItem'
 
 export default class Feed extends Component {
 
@@ -6,11 +7,15 @@ export default class Feed extends Component {
     super()
 
     this.state={
-      reviews: []
+      reviews: ''
     }
   }
 
   componentDidUpdate = () => {
+    return this.props.auth !== null && this.state.reviews === '' ? this.fetchReviews() : null
+  }
+
+  fetchReviews = () => {
     fetch(`http://localhost:3000/api/v1/reviews/${this.props.auth.user_id}`, {
       headers: {
         "Content-Type": "application/json",
@@ -19,13 +24,19 @@ export default class Feed extends Component {
       }
     })
       .then(res => res.json())
-      .then(console.log)
+      .then(json => {
+        console.log(json)
+        this.setState({
+          reviews: json
+        }, () => console.log(this.state.reviews))
+      })
   }
 
   render(){
-    console.log(this.props.auth)
     return(
-      <div>HEY</div>
+      <div>
+        {this.state.reviews.length === 0 ? <p>NO NEW REVIEWS</p> : this.state.reviews.map(review => <FeedItem datum={review}/>)}
+      </div>
     )
   }
 
