@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar'
 import SignUp from '../components/SignUp'
 import LogIn from '../components/LogIn'
 import Logout from '../components/Logout';
+import Feed from '../components/Feed';
 import Plan from './Plan'
 import Itinerary from './Itinerary'
 import Activity from './Activity'
@@ -79,19 +80,6 @@ class App extends Component {
     })
   }
 
-  componentDidUpdate = () => {
-    fetch('http://localhost:3000/api/v1/reviews', {
-      headers: {
-        "Content-Type": "application/json",
-        "Accepts": "application/json",
-        "Authorization": `Token token=${this.state.auth.token}`
-      }
-    })
-      .then(res => res.json())
-      .then(console.log)
-
-
-  }
 
   render() {
     return (
@@ -103,6 +91,9 @@ class App extends Component {
               <Route exact path="/signup" render={(renderProps) => <SignUp registeredCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/login" render={(renderProps) => <LogIn loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth } history={ renderProps.history } friendFetch={this.state.friendFetch}/>} />
+
+              <Route exact path="/feed" render={(renderProps) => <Feed auth={ this.state.auth } />} />
+
               <Route exact path="/plan" render={(renderProps) => {
                 return <Plan history={renderProps.history} setLocation={this.setLocation} setQuery={this.setQuery} currentLocation={this.state.location}/>  }} />
               <Route exact path="/itinerary" render={(renderProps) => {
