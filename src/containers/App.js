@@ -99,8 +99,8 @@ class App extends Component {
             <Switch>
               <Route exact path="/signup" render={(renderProps) => <SignUp registeredCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/login" render={(renderProps) => <LogIn loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
-              <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth } history={ renderProps.history } friendFetch={this.state.friendFetch}/>} />
-              <Route exact path="/itinerary-page" render={(renderProps) => <ItineraryPage name={this.state.itineraryName} activities={this.state.activities}/>}/>
+              <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth } history={ renderProps.history } changeItineraryId={this.changeItineraryId} clickHandle={this.clickHandle} friendFetch={this.state.friendFetch} setItineraries={this.setItineraries}/>} />
+              <Route exact path="/itinerary-page" render={(renderProps) => <ItineraryPage name={this.state.itineraryName} activities={this.state.activities} history={renderProps.history} auth={this.state.auth}/>}/>
               <Route exact path="/feed" render={(renderProps) => <Feed auth={ this.state.auth } />} />
 
               <Route exact path="/plan" render={(renderProps) => {
