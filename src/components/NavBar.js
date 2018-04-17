@@ -10,17 +10,56 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem,
+  Input} from 'reactstrap';
+import DisplayFriends from './DisplayFriends'
 
 
-const NavBar = (props) => {
+class NavBar extends React.Component {
 
+  constructor(){
+    super()
+
+    this.state = {
+      userList: [],
+      filter: ''
+    }
+  }
+
+  componentDidMount = () => {
+    fetch('http://localhost:3000/api/v1/users')
+    .then(res => res.json())
+    .then(json => {
+      console.log(json)
+      this.setState({
+        userList: json
+      })
+    })
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      filter: e.target.value
+    })
+  }
+
+  renderUsers = () => {
+    const filt = this.state.userList.filter(user => user.name.toLowerCase().includes(this.state.filter.toLowerCase()))
+    console.log(filt)
+    return filt.map(user => {
+      console.log(user)
+      return <DisplayFriends datum={user}/>
+    })
+  }
+
+  render(){
   return(
     <div>
       {localStorage.user !== '' ?
       <div>
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/">trippy</NavbarBrand>
+        <Input type="text" name="text" placeholder="find your friends..." className="search-bar" onChange={this.handleChange}/>
         <NavbarToggler onClick={this.toggle} />
           <Nav className="ml-auto" navbar>
             <NavItem>
@@ -45,15 +84,9 @@ const NavBar = (props) => {
             </UncontrolledDropdown>
           </Nav>
       </Navbar>
+      {this.state.filter === '' ? null : this.renderUsers()}
     </div>
       :
-      // <div className="ui menu">
-      //   <Link className="item" id="logo" to={ "/" }>trippy.</Link>
-      //   <div className="right menu">
-      //     <Link className="item" to={ "/signup" }>Sign Up</Link>
-      //     <Link className="item" to={ "/login" }>Log In</Link>
-      //   </div>
-      // </div>
       <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">trippy</NavbarBrand>
@@ -71,6 +104,8 @@ const NavBar = (props) => {
       }
     </div>
   )
+
+  }
 }
 
 export default NavBar

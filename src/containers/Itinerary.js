@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import ItineraryDetails from '../components/ItineraryDetails'
+import { Button } from 'reactstrap';
+import { Jumbotron, Container } from 'reactstrap';
 
 export default class Itinerary extends Component {
   state = {
@@ -76,19 +78,22 @@ export default class Itinerary extends Component {
 
   render(){
     return(
-      <div>
-        <h1>Upcoming Trips</h1>
+      <div className='itinerary-container'>
+        {/* <Jumbotron fluid className='bg-image-hero'>
+        </Jumbotron> */}
+
+        <h2>Upcoming Trips</h2>
         <br />
         <div className="ui grid">
           <div className="ui list">
           {this.state.itineraries.map(trip => <ItineraryDetails clickHandle={this.props.clickHandle} key={trip.id} trip={trip} auth={this.props.auth} changeItineraryId={this.props.changeItineraryId}/>)}
           </div>
         </div>
-        <button onClick={this.handleClick} className="add-to-trip">
-          <i className="add icon"></i>
-          New Trip
-        </button>
+        <Button color="info" onClick={this.handleClick} className="add-to-trip"><i className="add icon"></i>
+        New Trip</Button>{' '}
         {this.state.clicked ? <form onSubmit={this.handleSubmit}><label htmlFor="title">Title</label><input onChange={this.handleChange} type="text" id="title" value={this.state.name}/><input type="submit"/></form> : null}
+
+
       </div>
     )
   }

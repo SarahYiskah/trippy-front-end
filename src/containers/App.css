@@ -130,3 +130,26 @@ body {
   width: 60%;
   align-content: center;
 }
+
+.profile-container {
+  padding: 10px;
+  margin: 10px;
+}
+
+.add-to-trip {
+  width: 20%;
+}
+
+.itinerary-container {
+  margin: 20px 0px;
+}
+
+.bg-image-hero{
+  background-image: url('http://www.nbn.org.il/wp-content/uploads/2011/03/tel-aviv.jpg');
+  background-size: cover;
+  padding-bottom: 350px;
+}
+
+.search-bar {
+  width: 20%
+}
