@@ -19,7 +19,8 @@ class App extends Component {
       auth: null,
       location: '',
       query: '',
-      friendFetch: false
+      friendFetch: false,
+      clickedItineraryId: ''
     }
   }
 
@@ -62,10 +63,18 @@ class App extends Component {
     return activities.map(activity => <h3 key={activity.id}>{activity.name}</h3>)
   }
 
+
   friendFetch = (name) => {
     this.setState({
       friendFetch: name
     }, () => console.log(this.state.friendFetch))
+
+  }
+
+  changeItineraryId = (id) => {
+    this.setState({
+      clickedItineraryId: id
+    })
   }
 
   render() {
@@ -81,9 +90,9 @@ class App extends Component {
               <Route exact path="/plan" render={(renderProps) => {
                 return <Plan history={renderProps.history} setLocation={this.setLocation} setQuery={this.setQuery} currentLocation={this.state.location}/>  }} />
               <Route exact path="/itinerary" render={(renderProps) => {
-                return <Itinerary auth={ this.state.auth } clickHandle={this.clickHandle} history={ renderProps.history }/> }} />
+                return <Itinerary auth={ this.state.auth } changeItineraryId={this.changeItineraryId} clickHandle={this.clickHandle} history={ renderProps.history }/> }} />
               <Route exact path="/activity" render={(renderProps) => {
-                return <Activity history={renderProps.history} location={this.state.location} query={this.state.query} auth={this.state.auth} />
+                return <Activity history={renderProps.history} location={this.state.location} query={this.state.query} auth={this.state.auth} clickedItineraryId={this.state.clickedItineraryId} changeItineraryId={this.changeItineraryId}/>
               }}/>
               <Route exact path="/logout" render={ (renderProps) => {
                 return <Logout logout={ this.logout } history={ renderProps.history } />;

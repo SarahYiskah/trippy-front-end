@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import { Form, FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap'
+// import { Form, FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap'
+import { Input} from 'reactstrap'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
 export default class Filter extends Component {

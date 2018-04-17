@@ -16,15 +16,23 @@ export default class ActivityDetails extends Component {
   }
 
   clickHandle = () => {
-    console.log("i will add this activity to the trip")
-    console.log(this.state.activity)
-    console.log({tip: this.state.activity.tips,
-    formatted_address: this.state.activity.venue.location.formattedAddress,
-    lattitude: this.state.activity.venue.location.labeledLatLngs.lat,
-    longitude: this.state.activity.venue.location.labeledLatLngs.lng,
-    name: this.state.activity.venue.name,
-    url: this.state.activity.venue.url
+    fetch(`http://localhost:3000/api/v1/users/${ this.props.auth.user_id }/itineraries/${ this.props.clickedItineraryId }/activities`, {
+      method: "POST",
+      body: JSON.stringify({tip: this.state.activity.tips,
+        formatted_address: `${this.state.activity.venue.location.formattedAddress[0]}` + "\n" + `${this.state.activity.venue.location.formattedAddress[1]}`,
+        lattitude: this.state.activity.venue.location.lat,
+        longitude: this.state.activity.venue.location.lng,
+        name: this.state.activity.venue.name,
+        url: this.state.activity.venue.url
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json",
+        "Authorization": `Token token=${this.props.auth.token}`
+      }
     })
+    .then(res => res.json())
+    .then(json => console.log(json))
   }
 
   render(){
@@ -45,7 +53,7 @@ export default class ActivityDetails extends Component {
             Add to trips
           </button>
         </div>
-        {this.state.clicked ? <Itinerary auth={this.props.auth} clickHandle={this.clickHandle}/> : null}
+        {this.state.clicked ? <Itinerary auth={this.props.auth} clickHandle={this.clickHandle} changeItineraryId={this.props.changeItineraryId}/> : null}
       </div>
     )
   }
