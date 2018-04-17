@@ -49,7 +49,7 @@ class NavBar extends React.Component {
   renderUsers = () => {
     const filt = this.state.userList.filter(user => user.name.toLowerCase().includes(this.state.filter.toLowerCase()))
     return filt.map(user => {
-      return <DisplayFriends datum={user} auth={this.props.auth} friendFetch={this.props.setFriendState}/>
+      return <DisplayFriends datum={user} auth={this.props.auth} key={user.id} friendFetch={this.props.setFriendState}/>
     })
   }
 

@@ -77,6 +77,20 @@ class App extends Component {
     })
   }
 
+  componentDidUpdate = () => {
+    fetch('http://localhost:3000/api/v1/reviews', {
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json",
+        "Authorization": `Token token=${this.state.auth.token}`
+      }
+    })
+      .then(res => res.json())
+      .then(console.log)
+
+
+  }
+
   render() {
     return (
       <div className="App">
