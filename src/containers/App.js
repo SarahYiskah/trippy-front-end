@@ -8,6 +8,7 @@ import Plan from './Plan'
 import Itinerary from './Itinerary'
 import Activity from './Activity'
 import Profile from '../components/Profile'
+import ItineraryPage from './ItineraryPage'
 import './App.css'
 
 class App extends Component {
@@ -20,8 +21,13 @@ class App extends Component {
       location: '',
       query: '',
       friendFetch: false,
-      clickedItineraryId: ''
+      clickedItineraryId: '',
+      itineraries: []
     }
+  }
+
+  setItineraries = (itineraries) => {
+    this.setState({itineraries})
   }
 
 
@@ -60,8 +66,7 @@ class App extends Component {
   }
 
   clickHandle = (activities) => {
-    console.log(activities)
-    return activities.map(activity => <h3 key={activity.id}>{activity.name}</h3>)
+    return (this.state.itineraries.map(itinerary => <ItineraryPage key={itinerary.id} itinerary={itinerary} activities={activities} />))
   }
 
 
@@ -73,7 +78,6 @@ class App extends Component {
   }
 
   changeItineraryId = (id) => {
-    console.log("in app changeItineraryId", id)
     this.setState({
       clickedItineraryId: id
     })
@@ -89,8 +93,6 @@ class App extends Component {
     })
       .then(res => res.json())
       .then(console.log)
-
-
   }
 
   render() {
@@ -106,7 +108,7 @@ class App extends Component {
               <Route exact path="/plan" render={(renderProps) => {
                 return <Plan history={renderProps.history} setLocation={this.setLocation} setQuery={this.setQuery} currentLocation={this.state.location}/>  }} />
               <Route exact path="/itinerary" render={(renderProps) => {
-                return <Itinerary auth={ this.state.auth } changeItineraryId={this.changeItineraryId} clickHandle={this.clickHandle} history={ renderProps.history }/> }} />
+                return <Itinerary auth={ this.state.auth } changeItineraryId={this.changeItineraryId} clickHandle={this.clickHandle} history={ renderProps.history } setItineraries={this.setItineraries}/> }} />
               <Route exact path="/activity" render={(renderProps) => {
                 return <Activity history={renderProps.history} location={this.state.location} query={this.state.query} auth={this.state.auth} clickedItineraryId={this.state.clickedItineraryId} changeItineraryId={this.changeItineraryId}/>
               }}/>

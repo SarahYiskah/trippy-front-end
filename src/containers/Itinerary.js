@@ -25,7 +25,7 @@ export default class Itinerary extends Component {
         errors: [json]
       }) : this.setState({
         itineraries: json
-      })})
+      }), () => this.props.setItineraries(json)})
     }
   }
 
