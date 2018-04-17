@@ -11,9 +11,9 @@ export default class Itinerary extends Component {
     clicked: false
   }
 
-  tryToGetItineraries = (link, propsToLookAt, setStateTo) => {
+  tryToGetItineraries = (propsToLookAt) => {
     if (propsToLookAt.auth) {
-      fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }${link}`, {
+      fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }/itineraries`, {
         headers:  {
           "Content-Type": "application/json",
           "Accepts": "application/json",
@@ -25,18 +25,18 @@ export default class Itinerary extends Component {
       json.error ? this.setState({
         errors: [json]
       }) : this.setState({
-        [setStateTo]: json
+        itineraries: json
       })})
     }
   }
 
 
   componentDidMount = () => {
-    this.tryToGetItineraries('/itineraries', this.props, 'itineraries')
+    this.tryToGetItineraries(this.props)
   }
 
   componentWillReceiveProps = (nextProps) => {
-    this.tryToGetItineraries('/itineraries', nextProps, 'itineraries')
+    this.tryToGetItineraries(nextProps)
   }
 
   handleClick = () => {

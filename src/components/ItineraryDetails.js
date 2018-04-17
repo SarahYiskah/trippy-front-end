@@ -6,7 +6,6 @@ export default class ItineraryDetails extends Component {
     this.state = {
       trip: props.trip,
       activities: [],
-      clicked: false,
       errors: []
     }
   }
@@ -40,16 +39,14 @@ export default class ItineraryDetails extends Component {
   }
 
   handleClick = () => {
-    this.setState({
-      clicked: !this.state.clicked
-    }, () => this.props.changeItineraryId(this.state.trip.id))
+    this.props.changeItineraryId(this.state.trip.id)
+    setTimeout(() => this.props.clickHandle(this.state.activities), 1000)
   }
 
   render(){
     return(
       <div onClick={this.handleClick}>
       <h4>{this.state.trip.name}</h4>
-      {this.state.clicked ? this.props.clickHandle(this.state.activities) : null}
       </div>
     )
   }

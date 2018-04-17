@@ -59,10 +59,12 @@ class App extends Component {
   }
 
   clickHandle = (activities) => {
+    console.log(activities)
     return activities.map(activity => <h3 key={activity.id}>{activity.name}</h3>)
   }
 
   changeItineraryId = (id) => {
+    console.log("in app changeItineraryId", id)
     this.setState({
       clickedItineraryId: id
     })
