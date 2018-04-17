@@ -42,6 +42,10 @@ class NavBar extends React.Component {
     })
   }
 
+  capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   renderUsers = () => {
     const filt = this.state.userList.filter(user => user.name.toLowerCase().includes(this.state.filter.toLowerCase()))
     return filt.map(user => {
@@ -67,7 +71,7 @@ class NavBar extends React.Component {
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                {console.log(this.props.auth)}
+                {this.props.auth !== null ? this.capitalizeFirstLetter(this.props.auth.user_name) : null}
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
