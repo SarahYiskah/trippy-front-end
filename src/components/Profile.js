@@ -61,6 +61,7 @@ class Profile extends Component {
       </div>
 
       <div className="profile-container">
+        {console.log(this.state.following)}
       {this.state.following.length > 0 ?
       <User users={this.state.following} title="Following"/> : <h4>You are not following anyone</h4>}
       <br/><br/><br/><br/>
