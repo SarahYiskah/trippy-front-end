@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import ItineraryDetails from '../components/ItineraryDetails'
 import { Button } from 'reactstrap';
-import { Jumbotron, Container } from 'reactstrap';
 
 export default class Itinerary extends Component {
   state = {

@@ -30,7 +30,6 @@ class NavBar extends React.Component {
     fetch('http://localhost:3000/api/v1/users')
     .then(res => res.json())
     .then(json => {
-      console.log(json)
       this.setState({
         userList: json
       })
@@ -43,12 +42,14 @@ class NavBar extends React.Component {
     })
   }
 
+  capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   renderUsers = () => {
     const filt = this.state.userList.filter(user => user.name.toLowerCase().includes(this.state.filter.toLowerCase()))
-    console.log(filt)
     return filt.map(user => {
-      console.log(user)
-      return <DisplayFriends datum={user}/>
+      return <DisplayFriends datum={user} auth={this.props.auth} key={user.id} friendFetch={this.props.setFriendState}/>
     })
   }
 
@@ -70,7 +71,7 @@ class NavBar extends React.Component {
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                USERNAME
+                {this.props.auth !== null ? this.capitalizeFirstLetter(this.props.auth.user_name) : null}
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
