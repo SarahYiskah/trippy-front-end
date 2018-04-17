@@ -45,6 +45,7 @@ class Profile extends Component {
     this.tryToGetProfile('/following', nextProps, 'following')
   }
 
+
   render(){
     return(
       <div>
@@ -57,7 +58,7 @@ class Profile extends Component {
         </div>
 
       <div className="profile-container">
-      <Itinerary auth={this.props.auth}/>
+      <Itinerary auth={ this.props.auth } changeItineraryId={this.props.changeItineraryId} clickHandle={this.props.clickHandle} history={ this.props.history } setItineraries={this.props.setItineraries}/>
       </div>
 
       <div className="profile-container">
