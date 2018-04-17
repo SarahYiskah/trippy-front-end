@@ -4,11 +4,17 @@ import Itinerary from '../containers/Itinerary'
 
 class Profile extends Component {
 
-  state = {
-    user: {},
-    followers: [],
-    following: [],
-    errors: []
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      user: {},
+      followers: [],
+      following: [],
+      errors: [],
+      fetch: this.props.friendFetch
+    }
+
   }
 
 

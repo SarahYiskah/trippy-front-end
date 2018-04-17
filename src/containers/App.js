@@ -19,6 +19,7 @@ class App extends Component {
       auth: null,
       location: '',
       query: '',
+      friendFetch: false
     }
   }
 
@@ -61,16 +62,22 @@ class App extends Component {
     return activities.map(activity => <h3 key={activity.id}>{activity.name}</h3>)
   }
 
+  friendFetch = (name) => {
+    this.setState({
+      friendFetch: name
+    }, () => console.log(this.state.friendFetch))
+  }
+
   render() {
     return (
       <div className="App">
         <Router>
           <div>
-            <NavBar />
+            <NavBar auth={ this.state.auth } setFriendState={this.friendFetch}/>
             <Switch>
               <Route exact path="/signup" render={(renderProps) => <SignUp registeredCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/login" render={(renderProps) => <LogIn loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
-              <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth } history={ renderProps.history }/>} />
+              <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth } history={ renderProps.history } friendFetch={this.state.friendFetch}/>} />
               <Route exact path="/plan" render={(renderProps) => {
                 return <Plan history={renderProps.history} setLocation={this.setLocation} setQuery={this.setQuery} currentLocation={this.state.location}/>  }} />
               <Route exact path="/itinerary" render={(renderProps) => {
