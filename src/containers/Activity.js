@@ -30,7 +30,7 @@ export default class Activity extends Component {
   }
 
   renderActivityDetails = () => {
-    return this.state.venueData.map(venue => <ActivityDetails details={venue} key={venue.venue.id} auth={this.props.auth}/>)
+    return this.state.venueData.map(venue => <ActivityDetails details={venue} key={venue.venue.id} auth={this.props.auth} clickedItineraryId={this.props.clickedItineraryId} changeItineraryId={this.props.changeItineraryId}/>)
   }
 
   render(){
