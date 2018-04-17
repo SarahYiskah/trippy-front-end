@@ -15,7 +15,7 @@ export default class ActivityDetails extends Component {
   }
 
   createReview = (review) => {
-    fetch(`http://localhost:3000/api/v1/reviews/`, {
+    fetch(`http://localhost:3000/api/v1/reviews`, {
       headers:  {
         "Content-Type": "application/json",
         "Accepts": "application/json",
@@ -25,7 +25,10 @@ export default class ActivityDetails extends Component {
       method: "POST"
     })
     .then(res => res.json())
-    .then(json => console.log(json))
+    .then(json => {
+      console.log("successfully added review", json)
+      this.toggleReview()
+    })
   }
 
   handleSubmit = (e) => {
