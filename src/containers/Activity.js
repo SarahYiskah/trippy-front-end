@@ -15,10 +15,9 @@ export default class Activity extends Component {
   }
 
   clickHandle = () => {
-    console.log(this.props)
     fetch(`http://localhost:3000/api/v1/users/${ this.props.auth.user_id }/itineraries/${ this.props.clickedItineraryId }/activities`, {
       method: "POST",
-      body: JSON.stringify({tip: this.state.clickedActivity.tips,
+      body: JSON.stringify({tip: `${this.state.clickedActivity.tips[0].text} -  ${this.state.clickedActivity.tips[0].user.firstName}`,
         formatted_address: `${this.state.clickedActivity.venue.location.formattedAddress[0]}` + "\n" + `${this.state.clickedActivity.venue.location.formattedAddress[1]}`,
         lattitude: this.state.clickedActivity.venue.location.lat,
         longitude: this.state.clickedActivity.venue.location.lng,
