@@ -59,7 +59,7 @@ class NavBar extends React.Component {
       {localStorage.user !== '' ?
       <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">trippy</NavbarBrand>
+        <NavbarBrand href="/feed">trippy</NavbarBrand>
         <Input type="text" name="text" placeholder="find your friends..." className="search-bar" onChange={this.handleChange}/>
         <NavbarToggler onClick={this.toggle} />
           <Nav className="ml-auto" navbar>
