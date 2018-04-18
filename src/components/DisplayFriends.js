@@ -17,7 +17,6 @@ export default class DisplayFriends extends Component {
   }
 
   handleClick = (e) => {
-    let friend = e.target.id
 
     fetch(`http://localhost:3000/api/v1/users/${this.props.auth.user_id}/add`, {
       method: "POST",

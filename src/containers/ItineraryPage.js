@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import ItineraryActivities from '../components/ItineraryActivities'
 
-import { Button, Card, Image, Grid } from 'semantic-ui-react'
+import {Card} from 'semantic-ui-react'
 
 export default class ItineraryPage extends Component {
 

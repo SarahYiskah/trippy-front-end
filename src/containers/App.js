@@ -83,6 +83,7 @@ class App extends Component {
 
   clickHandle = (activities, history, name, boolean = true) => {
     this.setState({
+      visible: true,
       itineraryName: name,
       activities: activities,
       showButtons: boolean
@@ -100,6 +101,12 @@ class App extends Component {
   changeItineraryId = (id) => {
     this.setState({
       clickedItineraryId: id
+    })
+  }
+
+  makeAlertVisible = () => {
+    this.setState({
+      visible: true
     })
   }
 
@@ -121,9 +128,9 @@ class App extends Component {
               <Route exact path="/plan" render={(renderProps) => {
                 return <Plan history={renderProps.history} setLocation={this.setLocation} setQuery={this.setQuery} currentLocation={this.state.location}/>  }} />
               <Route exact path="/itinerary" render={(renderProps) => {
-                return <Itinerary auth={ this.state.auth } changeItineraryId={this.changeItineraryId} clickHandle={this.clickHandle} history={ renderProps.history } setItineraries={this.setItineraries}/> }} />
+                return <Itinerary auth={ this.state.auth } changeItineraryId={this.changeItineraryId} clickHandle={this.clickHandle} history={ renderProps.history } setItineraries={this.setItineraries} sendAlert={false} visible={this.state.visible}/> }} />
               <Route exact path="/activity" render={(renderProps) => {
-                return <Activity history={renderProps.history} location={this.state.location} query={this.state.query} auth={this.state.auth} clickedItineraryId={this.state.clickedItineraryId} changeItineraryId={this.changeItineraryId}/>
+                return <Activity history={renderProps.history} location={this.state.location} query={this.state.query} auth={this.state.auth} clickedItineraryId={this.state.clickedItineraryId} changeItineraryId={this.changeItineraryId} makeAlertVisible={this.makeAlertVisible}/>
               }}/>
               <Route exact path="/logout" render={ (renderProps) => {
                 return <Logout logout={ this.logout } history={ renderProps.history } />;
