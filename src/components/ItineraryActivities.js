@@ -14,7 +14,8 @@ export default class ActivityDetails extends Component {
       visible: false,
       delVisible: false,
       open: false,
-      addReview: false
+      addReview: false,
+      clickedItineraryId: props.clickedItineraryId
     }
   }
 
@@ -35,26 +36,48 @@ export default class ActivityDetails extends Component {
   }
 
   createReview = (review) => {
-    fetch(`http://localhost:3000/api/v1/reviews`, {
-      headers:  {
-        "Content-Type": "application/json",
-        "Accepts": "application/json",
-        "Authorization": `Token token=${this.props.auth.token}`
-      },
-      body: JSON.stringify(review),
-      method: "POST"
-    })
-    .then(res => res.json())
-    .then(json => {
-      console.log("successfully added review", json)
-      this.toggleReview()
-    })
+    if (this.props.auth) {
+      fetch(`http://localhost:3000/api/v1/reviews`, {
+        headers:  {
+          "Content-Type": "application/json",
+          "Accepts": "application/json",
+          "Authorization": `Token token=${this.props.auth.token}`
+        },
+        body: JSON.stringify(review),
+        method: "POST"
+      })
+      .then(res => res.json())
+      .then(json => {
+        this.toggleReview()
+      })
+    } else {
+      this.props.history.push('/login')
+    }
   }
+
+  deleteActivity = (itineraryId, activityId) => {
+    if (this.props.auth) {
+      fetch(`http://localhost:3000/api/v1/users/${this.props.auth.user_id}/itineraries/${itineraryId}/activities/${activityId}`, {
+        method: "DELETE",
+        headers:  {
+          "Content-Type": "application/json",
+          "Accepts": "application/json",
+          "Authorization": `Token token=${this.props.auth.token}`
+        }
+      })
+      .then(res => res.json())
+      .then(json => {
+        json.error ? null : this.props.changeActivities(json)})
+    } else {
+      this.props.history.push('/login')
+    }
+  }
+
 
   handleSubmit = (e) => {
     e.preventDefault()
     let review = {review: `${this.state.review}`, user_id: this.props.auth.user_id, content_name: this.props.details.name}
-    this.createReview(review)
+    this.state.review.length === 0 ? null : this.createReview(review)
     this.setState({
       visible: true
     })
@@ -66,11 +89,13 @@ export default class ActivityDetails extends Component {
     })
   }
 
-  handleClick = () => {
+  handleClick = (e) => {
     this.setState({
       delVisible: true
     })
-    console.log("you will be deleted shortly")
+    let activityId = JSON.parse(e.target.id).id
+    let itineraryId = this.state.clickedItineraryId
+    this.deleteActivity(itineraryId, activityId)
   }
 
   render(){

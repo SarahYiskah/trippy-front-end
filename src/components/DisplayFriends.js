@@ -17,28 +17,29 @@ export default class DisplayFriends extends Component {
   }
 
   handleClick = (e) => {
-
-    fetch(`http://localhost:3000/api/v1/users/${this.props.auth.user_id}/add`, {
-      method: "POST",
-      headers:  {
-        "Content-Type": "application/json",
-        "Accepts": "application/json",
-        "Authorization": `Token token=${this.props.auth.token}`
-      },
-      body:
-        JSON.stringify({
-          user_id: this.props.auth.user_id,
-          friend_id: e.target.id
-        })
-
-    })
-    .then( res => res.json())
-    .then( json => {
-      this.props.friendFetch(json.user_id)
-      this.setState({
-        visible: true
+    if(this.props.auth){
+      fetch(`http://localhost:3000/api/v1/users/${this.props.auth.user_id}/add`, {
+        method: "POST",
+        headers:  {
+          "Content-Type": "application/json",
+          "Accepts": "application/json",
+          "Authorization": `Token token=${this.props.auth.token}`
+        },
+        body: JSON.stringify({
+            user_id: this.props.auth.user_id,
+            friend_id: e.target.id
+          })
       })
-    })
+      .then( res => res.json())
+      .then( json => {
+        this.props.friendFetch(json.user_id)
+        this.setState({
+          visible: true
+        })
+      })
+    } else {
+      this.props.history.push('/login')
+    }
   }
 
   moveToFriend = () => {
