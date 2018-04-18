@@ -16,7 +16,7 @@ export default class User extends Component {
       <div>
         <h2>{this.state.title}</h2>
         <div className="ui list">
-        {this.state.users.map(friend => <UserDetails key={friend.id} user={friend} />)}
+        {this.state.users.map(friend => <UserDetails key={friend.id} user={friend} addFriendId={this.props.addFriendId}/>)}
         </div>
       </div>
     )

@@ -2,6 +2,7 @@ import React, { Component}  from 'react';
 import User from '../containers/User';
 import Itinerary from '../containers/Itinerary'
 import { Accordion, Icon } from 'semantic-ui-react'
+import FeedItem from './FeedItem'
 
 class Profile extends Component {
 
@@ -14,9 +15,9 @@ class Profile extends Component {
       following: [],
       errors: [],
       fetch: this.props.friendFetch,
-      activeIndex: 0
+      activeIndex: 0,
+      reviews: []
     }
-
   }
 
 
@@ -45,6 +46,7 @@ class Profile extends Component {
     this.tryToGetProfile('', nextProps, 'user')
     this.tryToGetProfile('/followers', nextProps, 'followers')
     this.tryToGetProfile('/following', nextProps, 'following')
+    this.tryToGetProfile('/reviews', nextProps, 'reviews')
   }
 
   handleClick = (e, titleProps) => {
@@ -66,11 +68,11 @@ class Profile extends Component {
               Account Details
             </Accordion.Title>
             <Accordion.Content active={activeIndex === 0}>
-              <p>
+              <div>
                 <strong>User:</strong> {this.state.user.name}
                 <br />
                 <strong>Email:</strong> {this.state.user.email}
-              </p>
+              </div>
             </Accordion.Content>
 
             <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>
@@ -78,31 +80,42 @@ class Profile extends Component {
               My Itineraries
             </Accordion.Title>
             <Accordion.Content active={activeIndex === 1}>
-              <p style={{size: 'inherit !important'}}>
+              <div style={{size: 'inherit !important'}}>
               <Itinerary auth={ this.props.auth } changeItineraryId={this.props.changeItineraryId} clickHandle={this.props.clickHandle} history={ this.props.history } setItineraries={this.props.setItineraries}/>
-              </p>
+              </div>
             </Accordion.Content>
 
             <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleClick}>
               <Icon name='dropdown' />
-              Following
+              My Reviews
             </Accordion.Title>
             <Accordion.Content active={activeIndex === 2}>
-              <p>
-                {this.state.following.length > 0 ?
-                <User users={this.state.following}/> : <p>You are not following anyone</p>}
-              </p>
+              <div style={{size: 'inherit !important'}}>
+              {this.state.reviews.length === 0 ? <p>You did not write any reviews yet</p> :
+                this.state.reviews.map(review => <FeedItem datum={review}/>)}
+              </div>
             </Accordion.Content>
 
             <Accordion.Title active={activeIndex === 3} index={3} onClick={this.handleClick}>
               <Icon name='dropdown' />
-              Followers
+              Following
             </Accordion.Title>
             <Accordion.Content active={activeIndex === 3}>
-              <p>
+              <div>
+                {this.state.following.length > 0 ?
+                <User users={this.state.following} addFriendId={this.props.addFriendId}/> : <p>You are not following anyone</p>}
+              </div>
+            </Accordion.Content>
+
+            <Accordion.Title active={activeIndex === 4} index={4} onClick={this.handleClick}>
+              <Icon name='dropdown' />
+              Followers
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 4}>
+              <div>
                 {this.state.followers.length > 0 ?
-                <User users={this.state.followers}/> : <p>You have no followers</p>}
-              </p>
+                <User users={this.state.followers} addFriendId={this.props.addFriendId}/> : <p>You have no followers</p>}
+              </div>
             </Accordion.Content>
           </Accordion>
         }
