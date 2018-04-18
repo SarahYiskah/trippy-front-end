@@ -1,13 +1,25 @@
 import React, {Component} from 'react'
 import ItineraryDetails from '../components/ItineraryDetails'
-import { Button } from 'reactstrap';
+import { Alert, Button } from 'reactstrap';
+
 
 export default class Itinerary extends Component {
-  state = {
-    itineraries: [],
-    errors: [],
-    name: '',
-    clicked: false
+
+  constructor(props){
+    super(props)
+
+    this.state = {
+      itineraries: [],
+      errors: [],
+      name: '',
+      clicked: false,
+      sendAlert: props.sendAlert
+    }
+  }
+
+
+  onDismiss = () => {
+    this.setState({ visible: false });
   }
 
   tryToGetItineraries = (propsToLookAt) => {
@@ -78,13 +90,14 @@ export default class Itinerary extends Component {
   render(){
     return(
       <div className='itinerary-container'>
-        {/* <Jumbotron fluid className='bg-image-hero'>
-        </Jumbotron> */}
 
         <h2>Upcoming Trips</h2>
         <br />
-        <div className="ui grid">
-          <div className="ui list">
+        <div >
+          <div >
+          {/* {this.state.sendAlert ? <Alert color="success" isOpen={this.props.visible} toggle={this.onDismiss}>
+            XXXX has been added to XXXX!
+          </Alert> : null} */}
           {this.state.itineraries.map(trip => <ItineraryDetails clickHandle={this.props.clickHandle} key={trip.id} trip={trip} auth={this.props.auth} changeItineraryId={this.props.changeItineraryId} history={this.props.history}/>)}
           </div>
         </div>

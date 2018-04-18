@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ActivityDetails from '../components/ActivityDetails'
+import { Alert } from 'reactstrap';
 
 
 export default class Activity extends Component {
@@ -10,7 +11,9 @@ export default class Activity extends Component {
       query: props.query,
       location: props.location,
       clickedActivity: {},
-      venueData: []
+      venueData: [],
+      visible: false
+
     }
   }
 
@@ -32,7 +35,10 @@ export default class Activity extends Component {
     })
     .then(res => res.json())
     .then(json => {
-      console.log("you just added a new activity", json)
+      console.log('here')
+      this.setState({
+        visible: true
+      })
     })
   }
 
@@ -58,7 +64,7 @@ export default class Activity extends Component {
   }
 
   renderActivityDetails = () => {
-    return this.state.venueData.map(venue => <ActivityDetails history={this.props.history} details={venue} key={venue.venue.id} auth={this.props.auth} clickedItineraryId={this.state.clickedItineraryId} clickHandle={this.clickHandle} changeItineraryId={this.props.changeItineraryId} setClickedActivity={this.setClickedActivity}/>)
+    return this.state.venueData.map(venue => <ActivityDetails history={this.props.history} details={venue} key={venue.venue.id} auth={this.props.auth} clickedItineraryId={this.state.clickedItineraryId} clickHandle={this.clickHandle} changeItineraryId={this.props.changeItineraryId} setClickedActivity={this.setClickedActivity} onDismiss={this.props.onDismiss} makeVisible={this.state.visible} />)
   }
 
   render(){

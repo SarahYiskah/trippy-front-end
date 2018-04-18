@@ -6,7 +6,7 @@ import Itinerary from '../containers/Itinerary'
 export default class ActivityDetails extends Component {
 
   state = {
-    // addReview: false,
+    addReview: false,
     review: '',
     visible: false,
     delVisible: false,
@@ -22,9 +22,7 @@ export default class ActivityDetails extends Component {
     })
   }
 
-  onDismiss = () => {
-    this.setState({ visible: false });
-  }
+
 
   onDelDismiss = () => {
     this.setState({ delVisible: false });
@@ -73,39 +71,14 @@ export default class ActivityDetails extends Component {
     const { open, size } = this.state
     return(
       <div>
-        {/* <div className="activity-box">
-          <div className="content">
-            <div className="title"><a href={this.props.url} target="_blank">{this.props.name}</a></div>
-            <div className="meta">
-              {this.props.formattedAddress}
-            </div>
-            <div className="description">
-              {this.props.details.tip ? <p>{this.props.details.tip}</p> : null}
-            </div>
-          </div>
-          <br/>
-          <button onClick={this.toggleReview} className="add-a-review" id={JSON.stringify(this.props.details)}>
-            <i className="add icon"></i>
-            Add review
-          </button>
-          <br/>
-          {this.state.addReview ? <form onSubmit={this.handleSubmit}><br/><textarea onChange={this.handleChange} type="text" id="title" name="review" value={this.state.review} placeholder="review"/><br/><input type="submit"/></form> : null}
-          <br/>
-          <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
-            Thank you for your review!
-          </Alert>
-          <button onClick={this.handleClick} className="remove-from-trip" id={JSON.stringify(this.props.details)}>
-            <i className="remove icon"></i>
-            Remove from trip
-          </button>
-          <Alert color="danger" isOpen={this.state.delVisible} toggle={this.onDelDismiss}>
-            This activity has been removed from your trip
-          </Alert>
-        </div> */}
+
         <Card className = 'centered' style={{width: '400px', height: '200px', margin: '40px'}}>
           <Card.Content>
             <Card.Header>
               <a href={this.props.url} target="_blank">{this.props.name}</a>
+              <Alert color="danger" isOpen={this.state.delVisible} toggle={this.onDelDismiss}>
+                Removed!
+              </Alert>
             </Card.Header>
             <Card.Meta>
               {this.props.formattedAddress}
@@ -117,56 +90,22 @@ export default class ActivityDetails extends Component {
           <Card.Content extra>
             <div className='ui two buttons'>
 
-               <Button basic color='green' onClick={this.toggleReview} className="add-a-review" id={JSON.stringify(this.props.details)}>Add Review</Button>
-
-               <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
-                Thank you for your review!
-              </Alert>
-
-              {this.state.addReview ? <Form onSubmit={this.handleSubmit}><Form.TextArea label='About' placeholder='Tell us more about you...' onChange={this.handleChange} type="text" id="title" name="review" value={this.state.review}  placeholder="review"/><Form.Button>Submit</Form.Button></Form> : null}
-
-              {/* <Modal trigger={this.state.addReview === true}>
-                <Modal.Header>Select a Photo</Modal.Header>
-                <Modal.Content image>
-                  <Image wrapped size='medium' src='/assets/images/avatar/large/rachel.png' />
-                  <Modal.Description>
-                    <Header>Default Profile Image</Header>
-                    <p>We've found the following gravatar image associated with your e-mail address.</p>
-                    <p>Is it okay to use this photo?</p>
-                  </Modal.Description>
-                </Modal.Content>
-              </Modal> */}
-
-              {/* <Modal size={size} open={open} onClose={this.close}>
-                <Modal.Header>
-                  Submit Review
-                </Modal.Header>
-                <Modal.Content>
-                  <Form onSubmit={this.handleSubmit}><Form.TextArea label='About' placeholder='What did you think?' onChange={this.handleChange} type="text" id="title" name="review" value={this.state.review}  placeholder="review"/><Form.Button>Submit</Form.Button></Form>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button negative>
-                    No
-                  </Button>
-                  <Button positive icon='checkmark' labelPosition='right' content='Yes' />
-                </Modal.Actions>
-              </Modal> */}
-
-              {/* <Button basic color='green' onClick={this.toggleReview} className="add-a-review" id={JSON.stringify(this.props.details)}>Add Review</Button>
+           <Modal trigger={<Button basic color='green' className="add-a-review" id={JSON.stringify(this.props.details)}>Add Review</Button>}>
+            <Modal.Header>Add A Review</Modal.Header>
+            <Modal.Content>
+              <Header>{this.props.name}</Header>
               <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
                 Thank you for your review!
               </Alert>
+              <Form onSubmit={this.handleSubmit}><Form.TextArea label='About' placeholder='Tell us more about you...' onChange={this.handleChange} type="text" id="title" name="review" value={this.state.review}  placeholder="review"/><Form.Button>Submit</Form.Button></Form>
+              <Modal.Description>
+              </Modal.Description>
+            </Modal.Content>
+          </Modal>
 
-              {this.state.addReview ? <Form onSubmit={this.handleSubmit}><Form.TextArea label='About' placeholder='Tell us more about you...' onChange={this.handleChange} type="text" id="title" name="review" value={this.state.review}  placeholder="review"/><Form.Button>Submit</Form.Button></Form> : null} */}
-
-              {/* {this.state.addReview ? <form onSubmit={this.handleSubmit}><br/><textarea onChange={this.handleChange} type="text" id="title" name="review" value={this.state.review} placeholder="review"/><br/><input type="submit"/></form> : null} */}
-
-              <Button basic color='red' onClick={this.handleClick} className="remove-from-trip" id={JSON.stringify(this.props.details)}>Remove From Trip</Button>
+          <Button basic color='red' onClick={this.handleClick} className="remove-from-trip" id={JSON.stringify(this.props.details)}>Remove From Trip</Button>
 
 
-              <Alert color="danger" isOpen={this.state.delVisible} toggle={this.onDelDismiss}>
-                Removed!
-              </Alert>
 
             </div>
           </Card.Content>
