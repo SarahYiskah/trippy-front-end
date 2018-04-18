@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Alert } from 'reactstrap'
 
 export default class ItineraryDetails extends Component {
   constructor(props){
@@ -6,7 +7,8 @@ export default class ItineraryDetails extends Component {
     this.state = {
       trip: props.trip,
       activities: [],
-      errors: []
+      errors: [],
+      visible: false
     }
   }
 
@@ -34,6 +36,10 @@ export default class ItineraryDetails extends Component {
     this.tryToGetActivities(`/itineraries/${this.state.trip.id}`, this.props)
   }
 
+  onDismiss = () => {
+    this.setState({ visible: false });
+  }
+
   componentWillReceiveProps = (nextProps) => {
     this.tryToGetActivities(`/itineraries/${this.state.trip.id}`, nextProps, 'activities')
   }
@@ -47,6 +53,9 @@ export default class ItineraryDetails extends Component {
     return(
       <div onClick={()=>this.handleClick(this.state.trip.name)}>
       <h4>{this.state.trip.name}</h4>
+      <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
+        This activity has been added to your itinerary
+      </Alert>
       </div>
     )
   }

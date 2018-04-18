@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Alert } from 'reactstrap'
 import Itinerary from '../containers/Itinerary'
 
 
@@ -12,6 +13,7 @@ export default class ActivityDetails extends Component {
       alreadyInItinerary: false
     }
   }
+
 
 
   handleClick = (e) => {

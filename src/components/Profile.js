@@ -1,6 +1,7 @@
 import React, { Component}  from 'react';
 import User from '../containers/User';
 import Itinerary from '../containers/Itinerary'
+import { Accordion, Icon } from 'semantic-ui-react'
 
 class Profile extends Component {
 
@@ -12,7 +13,8 @@ class Profile extends Component {
       followers: [],
       following: [],
       errors: [],
-      fetch: this.props.friendFetch
+      fetch: this.props.friendFetch,
+      activeIndex: 0
     }
 
   }
@@ -45,36 +47,66 @@ class Profile extends Component {
     this.tryToGetProfile('/following', nextProps, 'following')
   }
 
+  handleClick = (e, titleProps) => {
+   const { index } = titleProps
+   const { activeIndex } = this.state
+   const newIndex = activeIndex === index ? -1 : index
+
+   this.setState({ activeIndex: newIndex })
+ }
 
   render(){
+    const { activeIndex } = this.state
     return(
-      <div>
-      {this.state.user.error ? <h2>You do not have access to this profile</h2> :
-      <div>
-        <div className="profile-container">
-        <h2>Account Settings</h2>
-        <h4>You are logged in as: {this.state.user.name}</h4>
-        <h4>Email: {this.state.user.email}</h4>
-        </div>
+      <div className="profile-page">
+        {this.state.user.error ? <h2>You do not have access to this profile</h2> :
+          <Accordion fluid styled>
+            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+              <Icon name='dropdown' />
+              Account Details
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 0}>
+              <p>
+                <strong>User:</strong> {this.state.user.name}
+                <br />
+                <strong>Email:</strong> {this.state.user.email}
+              </p>
+            </Accordion.Content>
 
-      <div className="profile-container">
-      <Itinerary auth={ this.props.auth } changeItineraryId={this.props.changeItineraryId} clickHandle={this.props.clickHandle} history={ this.props.history } setItineraries={this.props.setItineraries}/>
-      </div>
+            <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>
+              <Icon name='dropdown' />
+              My Itineraries
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 1}>
+              <p style={{size: 'inherit !important'}}>
+              <Itinerary auth={ this.props.auth } changeItineraryId={this.props.changeItineraryId} clickHandle={this.props.clickHandle} history={ this.props.history } setItineraries={this.props.setItineraries}/>
+              </p>
+            </Accordion.Content>
 
-      <div className="profile-container">
-        {console.log(this.state.following)}
-      {this.state.following.length > 0 ?
-      <User users={this.state.following} title="Following"/> : <h4>You are not following anyone</h4>}
-      <br/><br/><br/><br/>
-      </div>
+            <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleClick}>
+              <Icon name='dropdown' />
+              Following
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 2}>
+              <p>
+                {this.state.following.length > 0 ?
+                <User users={this.state.following}/> : <p>You are not following anyone</p>}
+              </p>
+            </Accordion.Content>
 
-      <div className="profile-container">
-      {this.state.followers.length > 0 ?
-      <User users={this.state.followers} title="Followers"/> : <h4>You have no followers</h4>}
+            <Accordion.Title active={activeIndex === 3} index={3} onClick={this.handleClick}>
+              <Icon name='dropdown' />
+              Followers
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 3}>
+              <p>
+                {this.state.followers.length > 0 ?
+                <User users={this.state.followers}/> : <p>You have no followers</p>}
+              </p>
+            </Accordion.Content>
+          </Accordion>
+        }
       </div>
-    </div>
-    }
-    </div>
     )
   }
 }
