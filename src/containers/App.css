@@ -39,10 +39,12 @@ body {
 .col > p {
   color: white;
   font-family: 'Poiret One';
-  font-weight: 800;
+  font-weight: 1000;
+  text-shadow: 1.4px 1.2px black;
+  letter-spacing: 2px;
   text-align: middle;
-  font-size: 36px;
-  padding-top: 25%;
+  font-size: 40px;
+  padding-top: 20%;
 }
 
 #trending {

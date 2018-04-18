@@ -70,9 +70,9 @@ class NavBar extends React.Component {
             <NavItem>
               <NavLink href="/plan">Plan Trips</NavLink>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <NavLink href="/itinerary">My Itineraries</NavLink>
-            </NavItem>
+            </NavItem> */}
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 {this.props.auth !== null ? this.capitalizeFirstLetter(this.props.auth.user_name) : null}
