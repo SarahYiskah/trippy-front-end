@@ -1,7 +1,6 @@
 import React, { Component}  from 'react';
-import Itinerary from '../containers/Itinerary'
 import ItineraryPage from '../containers/ItineraryPage'
-// import ItineraryDetails from './ItineraryDetails'
+
 
 export default class Friend extends Component {
 
@@ -60,7 +59,7 @@ export default class Friend extends Component {
         errors: [json]
       }) : this.setState({
         activities: json
-      }, () => this.props.clickHandle(this.state.activities, this.props.history, this.state.itineraryName))})
+      }, () => this.props.clickHandle(this.state.activities, this.props.history, this.state.itineraryName, false))})
     }
   }
 

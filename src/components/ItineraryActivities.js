@@ -5,13 +5,19 @@ import Itinerary from '../containers/Itinerary'
 
 export default class ActivityDetails extends Component {
 
-  state = {
-    addReview: false,
-    review: '',
-    visible: false,
-    delVisible: false,
-    open: false
+  constructor(props){
+    super(props)
+
+    this.state = {
+      showButtons: props.showButtons,
+      review: '',
+      visible: false,
+      delVisible: false,
+      open: false,
+      addReview: false
+    }
   }
+
 
   show = (size) => () => this.setState({size, open: true })
   close = () => this.setState({ open: false })
@@ -87,6 +93,7 @@ export default class ActivityDetails extends Component {
               {this.props.details.tip ? <p>{this.props.details.tip}</p> : null}
             </Card.Description>
           </Card.Content>
+          {this.state.showButtons ?
           <Card.Content extra>
             <div className='ui two buttons'>
 
@@ -108,7 +115,7 @@ export default class ActivityDetails extends Component {
 
 
             </div>
-          </Card.Content>
+          </Card.Content> : null }
         </Card>
       </div>
     )

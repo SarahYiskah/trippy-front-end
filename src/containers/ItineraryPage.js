@@ -16,7 +16,7 @@ export default class ItineraryPage extends Component {
         <h2>{this.props.name}</h2>
         <Card.Group style={{'justify-content': 'center'}}>
         {/* <Grid columns='equal' rows='equal'> */}
-        {this.props.activities.map(activity => <ItineraryActivities details={activity} name={activity.name} url={activity.url} formattedAddress={activity.formattedAddress} key={activity.id} auth={this.props.auth}/>)}
+        {this.props.activities.map(activity => <ItineraryActivities showButtons={this.props.showButtons} details={activity} name={activity.name} url={activity.url} formattedAddress={activity.formattedAddress} key={activity.id} auth={this.props.auth}/>)}
         {/* </Grid> */}
         </Card.Group>
       </div>
