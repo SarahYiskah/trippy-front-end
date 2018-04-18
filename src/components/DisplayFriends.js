@@ -1,4 +1,5 @@
 import React, { Component}  from 'react';
+import {Link} from 'react-router-dom'
 
 
 export default class DisplayFriends extends Component {
@@ -27,6 +28,11 @@ export default class DisplayFriends extends Component {
 
   }
 
+  moveToFriend = () => {
+    this.props.resetFilter()
+    this.props.addFriendId(this.props.datum.id, this.props.datum.name, this.props.datum.email)
+  }
+
 
   render(){
     return(
@@ -35,7 +41,7 @@ export default class DisplayFriends extends Component {
         <div className="profile-container">
         <h4>Name: {this.props.datum.name}</h4>
         <h4>Email: {this.props.datum.email}</h4>
-        <a href="">View Profile</a>
+        <Link to="/friend-page" onClick={this.moveToFriend}>View Profile</Link>
         <button onClick={this.handleClick} id={this.props.datum.id}>Add Friend</button>
         </div>
 

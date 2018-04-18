@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Itinerary from '../containers/Itinerary'
 
+
 export default class ActivityDetails extends Component {
 
   constructor(props){

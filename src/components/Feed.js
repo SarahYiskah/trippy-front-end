@@ -37,7 +37,7 @@ export default class Feed extends Component {
       <div>
 
         <div>
-          <img className="workplz" src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd27a515bce2dade58bc288fde28f290&auto=format&fit=crop&w=1993&q=80" />
+          <img className="workplz" src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd27a515bce2dade58bc288fde28f290&auto=format&fit=crop&w=1993&q=80" alt="pretty" />
         </div>
 
         <div class="ui large feed">

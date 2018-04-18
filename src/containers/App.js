@@ -9,6 +9,7 @@ import Plan from './Plan'
 import Itinerary from './Itinerary'
 import Activity from './Activity'
 import Profile from '../components/Profile'
+import Friend from '../components/Friend'
 import ItineraryPage from './ItineraryPage'
 import './App.css'
 
@@ -25,8 +26,19 @@ class App extends Component {
       clickedItineraryId: '',
       itineraries: [],
       itineraryName: '',
-      activities: []
+      activities: [],
+      friendId: '',
+      friendName: '',
+      friendEmail: ''
     }
+  }
+
+  addFriendId = (id, name, email) => {
+    this.setState({
+      friendId: id,
+      friendName: name,
+      friendEmail: email
+    })
   }
 
   setItineraries = (itineraries) => {
@@ -95,8 +107,9 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <NavBar auth={ this.state.auth } setFriendState={this.friendFetch}/>
+            <NavBar auth={ this.state.auth } setFriendState={this.friendFetch} addFriendId={this.addFriendId}/>
             <Switch>
+              <Route exact path="/friend-page" render={(renderProps) => <Friend auth={this.state.auth} history={ renderProps.history } friendId={this.state.friendId} friendName={this.state.friendName} friendEmail={this.state.friendEmail} clickHandle={this.clickHandle}/>} />
               <Route exact path="/signup" render={(renderProps) => <SignUp registeredCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/login" render={(renderProps) => <LogIn loggedInCallback={ this.gotAuthToken } history={ renderProps.history }/>} />
               <Route exact path="/profile" render={(renderProps) => <Profile auth={ this.state.auth } history={ renderProps.history } changeItineraryId={this.changeItineraryId} clickHandle={this.clickHandle} friendFetch={this.state.friendFetch} setItineraries={this.setItineraries}/>} />
