@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ItineraryDetails from '../components/ItineraryDetails'
-import { Alert, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 
 export default class Itinerary extends Component {

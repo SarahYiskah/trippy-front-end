@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Alert } from 'reactstrap'
-import { Button, Card, Image, Form, Modal, Message, Header } from 'semantic-ui-react'
-import Itinerary from '../containers/Itinerary'
+import { Button, Card, Form, Modal, Header } from 'semantic-ui-react'
+// import Itinerary from '../containers/Itinerary'
 
 export default class ActivityDetails extends Component {
 
@@ -74,7 +74,6 @@ export default class ActivityDetails extends Component {
   }
 
   render(){
-    const { open, size } = this.state
     return(
       <div>
 
@@ -104,7 +103,7 @@ export default class ActivityDetails extends Component {
               <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
                 Thank you for your review!
               </Alert>
-              <Form onSubmit={this.handleSubmit}><Form.TextArea label='About' placeholder='Tell us more about you...' onChange={this.handleChange} type="text" id="title" name="review" value={this.state.review}  placeholder="review"/><Form.Button>Submit</Form.Button></Form>
+              <Form onSubmit={this.handleSubmit}><Form.TextArea label='About' onChange={this.handleChange} type="text" id="title" name="review" value={this.state.review}  placeholder="review"/><Form.Button>Submit</Form.Button></Form>
               <Modal.Description>
               </Modal.Description>
             </Modal.Content>

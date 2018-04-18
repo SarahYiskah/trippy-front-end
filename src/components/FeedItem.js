@@ -2,10 +2,6 @@ import React, {Component} from 'react'
 
 export default class FeedItem extends Component {
 
-  constructor() {
-    super()
-  }
-
 
   render(){
     console.log(this.props.datum)

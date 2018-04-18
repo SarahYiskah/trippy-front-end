@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 import ActivityDetails from '../components/ActivityDetails'
-import { Alert } from 'reactstrap';
-
 
 export default class Activity extends Component {
 

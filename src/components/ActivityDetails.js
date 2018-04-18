@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Alert } from 'reactstrap'
-import { Button, Card, Image, Form, Modal, Message, Header } from 'semantic-ui-react'
+import { Button, Card, Modal, Header } from 'semantic-ui-react'
 import Itinerary from '../containers/Itinerary'
 
 
@@ -29,25 +29,8 @@ export default class ActivityDetails extends Component {
 
 
   render(){
-    const { open, size } = this.state
     return(
       <div>
-        {/* <div className="activity-box">
-          <div className="content">
-            <div className="title"><a href={this.props.details.venue.url} target="_blank">{this.props.details.venue.name}</a></div>
-            <div className="meta">
-              {this.props.details.venue.location.formattedAddress}
-            </div>
-            <div className="description">
-              {this.props.details.tips ? `${this.props.details.tips[0].text} -  ${this.props.details.tips[0].user.firstName}` : null}
-            </div>
-          </div>
-          <button onClick={this.handleClick} className="add-to-trip" id={JSON.stringify(this.props.details)}>
-            <i className="add icon"></i>
-            Add to trips
-          </button>
-        </div>
-        {this.state.clicked ? <Itinerary auth={this.props.auth} clickHandle={this.props.clickHandle} changeItineraryId={this.props.changeItineraryId} history={this.props.history}/> : null} */}
 
         <Card className = 'centered' style={{width: '400px', height: '300px', margin: '30px'}}>
           <Card.Content>
