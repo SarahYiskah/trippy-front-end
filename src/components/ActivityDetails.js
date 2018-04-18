@@ -32,7 +32,7 @@ export default class ActivityDetails extends Component {
     return(
       <div>
 
-        <Card className = 'centered' style={{width: '400px', height: '300px', margin: '30px'}}>
+        <Card className = 'centered' style={{width: '400px', height: '300px', margin: '30px', border: '2px solid rgba(73, 160, 181, 1)'}}>
           <Card.Content>
             <Card.Header>
               <a href={this.props.details.venue.url} target="_blank">{this.props.details.venue.name}</a>

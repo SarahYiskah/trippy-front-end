@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ItineraryDetails from '../components/ItineraryDetails'
 import { Button } from 'reactstrap';
+import { List } from 'semantic-ui-react'
 
 
 export default class Itinerary extends Component {
@@ -90,21 +91,16 @@ export default class Itinerary extends Component {
   render(){
     return(
       <div className='itinerary-container'>
-
-        <h2>Upcoming Trips</h2>
-        <br />
         <div >
           <div >
-          {/* {this.state.sendAlert ? <Alert color="success" isOpen={this.props.visible} toggle={this.onDismiss}>
-            XXXX has been added to XXXX!
-          </Alert> : null} */}
-          {this.state.itineraries.map(trip => <ItineraryDetails clickHandle={this.props.clickHandle} key={trip.id} trip={trip} auth={this.props.auth} changeItineraryId={this.props.changeItineraryId} history={this.props.history}/>)}
+          <List>
+            {this.state.itineraries.map(trip => <ItineraryDetails clickHandle={this.props.clickHandle} key={trip.id} trip={trip} auth={this.props.auth} changeItineraryId={this.props.changeItineraryId} history={this.props.history}/>)}
+          </List>
           </div>
         </div>
         <Button color="info" onClick={this.handleClick} className="add-to-trip"><i className="add icon"></i>
         New Trip</Button>{' '}
-        {this.state.clicked ? <form onSubmit={this.handleSubmit}><label htmlFor="title">Title</label><input onChange={this.handleChange} type="text" id="title" value={this.state.name}/><input type="submit"/></form> : null}
-
+        {this.state.clicked ? <form onSubmit={this.handleSubmit}><label htmlFor="title" style={{'font-family':'Futura'}}>Title</label><input onChange={this.handleChange} type="text" id="title" value={this.state.name}/><input type="submit"/></form> : null}
 
       </div>
     )

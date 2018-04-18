@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Alert } from 'reactstrap'
+import { List } from 'semantic-ui-react'
 
 export default class ItineraryDetails extends Component {
   constructor(props){
@@ -52,7 +53,15 @@ export default class ItineraryDetails extends Component {
   render(){
     return(
       <div onClick={()=>this.handleClick(this.state.trip.name)}>
-      <h4>{this.state.trip.name}</h4>
+      {/* <p></p> */}
+
+      <List.Item>
+        <List.Content>
+          <List.Icon name='marker' />
+          <List.Header as='a'><strong>{this.state.trip.name}</strong></List.Header>
+        </List.Content>
+      </List.Item>
+
       <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
         This activity has been added to your itinerary
       </Alert>
