@@ -100,8 +100,7 @@ export default class Itinerary extends Component {
         </div>
         <Button color="info" onClick={this.handleClick} className="add-to-trip"><i className="add icon"></i>
         New Trip</Button>{' '}
-        {this.state.clicked ? <form onSubmit={this.handleSubmit}><label htmlFor="title">Title</label><input onChange={this.handleChange} type="text" id="title" value={this.state.name}/><input type="submit"/></form> : null}
-
+        {this.state.clicked ? <form onSubmit={this.handleSubmit}><label htmlFor="title" style={{'font-family':'Futura'}}>Title</label><input onChange={this.handleChange} type="text" id="title" value={this.state.name}/><input type="submit"/></form> : null}
 
       </div>
     )

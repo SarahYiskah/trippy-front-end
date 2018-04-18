@@ -74,10 +74,10 @@ export default class Friend extends Component {
   render(){
     return(
       <div>
-      <h2>{this.props.friendName}</h2>
+      <h2 style={{'font-family': 'futura'}}>{this.props.friendName}</h2>
       <p>{this.props.friendEmail}</p>
       <div>
-      <h2>Itineraries of {this.props.friendName}</h2>
+      <h2 style={{'font-family': 'futura'}}>Itineraries of {this.props.friendName}</h2>
       {this.state.itineraries.map(trip => {
         return <h4 onClick={this.handleClick} id={trip.id}>{trip.name}</h4>})}
       </div>
