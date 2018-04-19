@@ -121,7 +121,7 @@ export default class ActivityDetails extends Component {
           <Card.Content extra>
             <div className='ui two buttons'>
 
-           <Modal trigger={<Button basic color='green' className="add-a-review" id={JSON.stringify(this.props.details)}>Add Review</Button>}>
+           <Modal className="scrolling" trigger={<Button basic color='green' className="add-a-review" id={JSON.stringify(this.props.details)}>Add Review</Button>}>
             <Modal.Header>Add A Review</Modal.Header>
             <Modal.Content>
               <Header>{this.props.name}</Header>

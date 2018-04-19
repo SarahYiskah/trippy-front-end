@@ -47,7 +47,7 @@ export default class ActivityDetails extends Component {
           </Card.Content>
           <Card.Content extra>
 
-           <Modal trigger={<Button basic color='green' onClick={this.handleClick} id={JSON.stringify(this.props.details)}>Add To Trip</Button>}>
+           <Modal className="scrolling" trigger={<Button basic color='green' onClick={this.handleClick} id={JSON.stringify(this.props.details)}>Add To Trip</Button>}>
             <Modal.Header>Add To Trip</Modal.Header>
             <Modal.Content>
               <Header>{this.props.details.venue.name}</Header>
