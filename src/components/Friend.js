@@ -1,4 +1,6 @@
 import React, { Component}  from 'react';
+import url from '../modules/link.js'
+
 
 export default class Friend extends Component {
 
@@ -24,7 +26,7 @@ export default class Friend extends Component {
 
   tryToGetItineraries = () => {
     if (this.props.auth) {
-      fetch(`http://localhost:3000/api/v1/friends/${ this.props.friendId }/itineraries`, {
+      fetch(`${url}api/v1/friends/${ this.props.friendId }/itineraries`, {
         headers:  {
           "Content-Type": "application/json",
           "Accepts": "application/json",
@@ -44,7 +46,7 @@ export default class Friend extends Component {
 
   tryToGetActivities = () => {
     if (this.props.auth) {
-      fetch(`http://localhost:3000/api/v1/friends/${ this.props.friendId }/itineraries/${this.state.clickedItineraryId}/activities`, {
+      fetch(`${url}api/v1/friends/${ this.props.friendId }/itineraries/${this.state.clickedItineraryId}/activities`, {
         headers:  {
           "Content-Type": "application/json",
           "Accepts": "application/json",

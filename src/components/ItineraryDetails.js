@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import { Alert } from 'reactstrap'
 import { List } from 'semantic-ui-react'
+import url from '../modules/link.js'
+
 
 export default class ItineraryDetails extends Component {
   constructor(props){
@@ -15,7 +17,7 @@ export default class ItineraryDetails extends Component {
 
   tryToGetActivities = (link, propsToLookAt) => {
     if (propsToLookAt.auth) {
-      fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }${link}`, {
+      fetch(`${url}api/v1/users/${ propsToLookAt.auth.user_id }${link}`, {
         headers:  {
           "Content-Type": "application/json",
           "Accepts": "application/json",

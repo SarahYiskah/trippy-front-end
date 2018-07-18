@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import ItineraryDetails from '../components/ItineraryDetails'
 import { Button } from 'reactstrap';
 import { List } from 'semantic-ui-react'
+import url from '../modules/link.js'
+
 
 
 export default class Itinerary extends Component {
@@ -25,7 +27,7 @@ export default class Itinerary extends Component {
 
   tryToGetItineraries = (propsToLookAt) => {
     if (propsToLookAt.auth) {
-      fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }/itineraries`, {
+      fetch(`${url}api/v1/users/${ propsToLookAt.auth.user_id }/itineraries`, {
         headers:  {
           "Content-Type": "application/json",
           "Accepts": "application/json",
@@ -56,7 +58,7 @@ export default class Itinerary extends Component {
   }
 
   createNewItinerary = (name) => {
-    fetch(`http://localhost:3000/api/v1/users/${ this.props.auth.user_id }/itineraries`, {
+    fetch(`${url}api/v1/users/${ this.props.auth.user_id }/itineraries`, {
       method: "POST",
       body: JSON.stringify({name}),
       headers: {

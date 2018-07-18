@@ -3,6 +3,8 @@ import User from '../containers/User';
 import Itinerary from '../containers/Itinerary'
 import { Accordion, Icon } from 'semantic-ui-react'
 import FeedItem from './FeedItem'
+import url from '../modules/link.js'
+
 
 class Profile extends Component {
 
@@ -23,7 +25,7 @@ class Profile extends Component {
 
   tryToGetProfile = (link, propsToLookAt, setStateTo) => {
     if (propsToLookAt.auth) {
-      fetch(`http://localhost:3000/api/v1/users/${ propsToLookAt.auth.user_id }${link}`, {
+      fetch(`${url}api/v1/users/${ propsToLookAt.auth.user_id }${link}`, {
         headers:  {
           "Content-Type": "application/json",
           "Accepts": "application/json",

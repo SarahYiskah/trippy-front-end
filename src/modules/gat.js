@@ -1,3 +1,6 @@
+import url from '../modules/link.js'
+
+
 const gat = (url, method="GET", body, authToken) => {
   const headers = {
     "Content-Type": "application/json",
@@ -10,7 +13,7 @@ const gat = (url, method="GET", body, authToken) => {
 }
 
 const profile = (userId, authToken) => {
-  return gat(`http://localhost:3001/users/${ userId }`, null, null, authToken)
+  return gat(`${url}users/${ userId }`, null, null, authToken)
 }
 
 export default {

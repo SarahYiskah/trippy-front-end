@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import FeedItem from './FeedItem'
+import url from '../modules/link.js'
+
 
 export default class Feed extends Component {
 
@@ -16,7 +18,7 @@ export default class Feed extends Component {
   }
 
   fetchReviews = () => {
-    fetch(`http://localhost:3000/api/v1/reviews/${this.props.auth.user_id}`, {
+    fetch(`${url}api/v1/reviews/${this.props.auth.user_id}`, {
       headers: {
         "Content-Type": "application/json",
         "Accepts": "application/json",

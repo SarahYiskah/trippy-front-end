@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import { Alert } from 'reactstrap'
 import { Button, Card, Form, Modal, Header } from 'semantic-ui-react'
+import url from '../modules/link.js'
+
 // import Itinerary from '../containers/Itinerary'
 
 export default class ActivityDetails extends Component {
@@ -37,7 +39,7 @@ export default class ActivityDetails extends Component {
 
   createReview = (review) => {
     if (this.props.auth) {
-      fetch(`http://localhost:3000/api/v1/reviews`, {
+      fetch(`${url}api/v1/reviews`, {
         headers:  {
           "Content-Type": "application/json",
           "Accepts": "application/json",
@@ -57,7 +59,7 @@ export default class ActivityDetails extends Component {
 
   deleteActivity = (itineraryId, activityId) => {
     if (this.props.auth) {
-      fetch(`http://localhost:3000/api/v1/users/${this.props.auth.user_id}/itineraries/${itineraryId}/activities/${activityId}`, {
+      fetch(`${url}api/v1/users/${this.props.auth.user_id}/itineraries/${itineraryId}/activities/${activityId}`, {
         method: "DELETE",
         headers:  {
           "Content-Type": "application/json",

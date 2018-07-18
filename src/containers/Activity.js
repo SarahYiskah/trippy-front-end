@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import ActivityDetails from '../components/ActivityDetails'
+import url from '../modules/link.js'
+
 
 export default class Activity extends Component {
 
@@ -19,7 +21,7 @@ export default class Activity extends Component {
     console.log(this.state.clickedActivity)
     let tip
     this.state.clickedActivity.tips ? tip = `${this.state.clickedActivity.tips[0].text} -  ${this.state.clickedActivity.tips[0].user.firstName}` : tip = ''
-    fetch(`http://localhost:3000/api/v1/users/${ this.props.auth.user_id }/itineraries/${ this.props.clickedItineraryId }/activities`, {
+    fetch(`${url}api/v1/users/${ this.props.auth.user_id }/itineraries/${ this.props.clickedItineraryId }/activities`, {
       method: "POST",
       body: JSON.stringify({tip: tip,
         formatted_address: `${this.state.clickedActivity.venue.location.formattedAddress[0]}` + "\n" + `${this.state.clickedActivity.venue.location.formattedAddress[1]}`,

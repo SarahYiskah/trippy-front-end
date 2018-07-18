@@ -13,6 +13,7 @@ import {
   DropdownItem,
   Input} from 'reactstrap';
 import DisplayFriends from './DisplayFriends'
+import url from '../modules/link.js'
 
 
 class NavBar extends React.Component {
@@ -31,7 +32,7 @@ class NavBar extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3000/api/v1/users')
+    fetch(`${url}api/v1/users`)
     .then(res => res.json())
     .then(json => {
       this.setState({
@@ -94,7 +95,7 @@ class NavBar extends React.Component {
       :
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">trippy</NavbarBrand>
+          <NavbarBrand href="/"><img src={require("../images/Untitled.001.jpeg")} style={{height: '40px'}}/></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Nav className="ml-auto" navbar>
             <NavItem>

@@ -1,6 +1,7 @@
 import React, { Component}  from 'react'
 import { Alert } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import url from '../modules/link.js'
 
 export default class DisplayFriends extends Component {
 
@@ -18,7 +19,7 @@ export default class DisplayFriends extends Component {
 
   handleClick = (e) => {
     if(this.props.auth){
-      fetch(`http://localhost:3000/api/v1/users/${this.props.auth.user_id}/add`, {
+      fetch(`${url}api/v1/users/${this.props.auth.user_id}/add`, {
         method: "POST",
         headers:  {
           "Content-Type": "application/json",

@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import url from '../modules/link.js'
+
 
 export default class SignUp extends Component {
 
@@ -12,7 +14,7 @@ export default class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    fetch("http://localhost:3000/api/v1/signup", {
+    fetch(`${url}api/v1/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,6 +32,10 @@ export default class SignUp extends Component {
           this.setState({
             errors: json.errors
           });
+        } else if (json.error) {
+          this.setState({
+            errors: [json.error]
+          })
         } else {
           this.setState({ errors: [] })
           this.props.registeredCallback(json)
